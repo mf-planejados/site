@@ -1,0 +1,229 @@
+import { useMediaQuery, useTheme } from "@mui/material"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { useState } from "react"
+import { Box, Text } from "../../atoms"
+import { Colors } from "./Colors"
+import Hamburger from "hamburger-react"
+
+export const LeftMenu = ({ menuItems = [] }) => {
+
+   const router = useRouter()
+
+   const [showMenuUser, setShowMenuUser] = useState(false)
+   const [showMenuMobile, setShowMenuMobile] = useState(false)
+   const theme = useTheme()
+   const navBar = useMediaQuery(theme.breakpoints.down('md'))
+
+   return (
+      <>
+         {!navBar ? 
+         //Menu Desktop
+         <>
+            <Box sx={styles.leftMenuMainContainer}>
+               <Box sx={{
+                  ...styles.icon,
+                  backgroundImage: `url('/logo.png')`,
+                  backgroundSize: 'contain',
+                  height: 50,
+                  width: 120,
+                  left: 0,
+                  display: 'flex',
+                  "&:hover": {
+                     cursor: 'pointer', opacity: 0.8
+                  }
+               }} onClick={() => router.push('/home/Home')} />
+               < Box sx={{ display: 'flex', width: '80%',justifyContent: 'center'}}>
+                  {menuItems.map((item, index) =>
+                        <MenuItem
+                           key={`${index}_${item.to}`}
+                           to={item.to}
+                           text={item.text}
+                           icon={item.icon}
+                        />
+                     )}
+               </Box>
+            </Box>
+         </>
+            : 
+            //Menu Mobile
+            <>
+
+               <Box sx={styles.menuResponsive}>
+                  <Box sx={{
+                     backgroundImage: `url('/icons/logo_green.svg')`,
+                     backgroundSize: 'contain',
+                     backgroundRepeat: 'no-repeat',
+                     width: 1,
+                     height: 30,
+                     marginTop: 1,
+                     "&:hover": {
+                        cursor: 'pointer', opacity: 0.8
+                     }
+                  }} onClick={() => router.push('/')} />
+                  <Hamburger toggled={showMenuMobile} toggle={setShowMenuMobile} duration={0.8} />
+               </Box>
+               {showMenuMobile ?
+                  <>
+                     <Box sx={styles.menuMobileContainer}>
+                        <Box sx={{
+                           ...styles.icon,
+                           backgroundImage: `url('/icons/logo_green.svg')`,
+                           backgroundSize: 'contain',
+                           width: 1,
+                           height: 30,
+                           marginTop: 1,
+                           left: 0,
+                           "&:hover": {
+                              cursor: 'pointer', opacity: 0.8
+                           }
+                        }} onClick={() => {
+                           router.push('/')
+                        }} />
+                        < Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                           {menuItems.map((item, index) =>
+                                 <MenuItem
+                                    key={`${index}_${item.to}`}
+                                    to={item.to}
+                                    text={item.text}
+                                    icon={item.icon}
+                                    onClick={() => setShowMenuMobile(false)}
+                                 />
+                              )}
+                        </Box>
+                     </Box>
+                  </> : ''}
+            </>
+         }
+      </>
+   )
+}
+
+const MenuItem = (props) => {
+
+   const { to, text, icon, currentPage, onClick } = props
+
+   return (
+      <Link href={to} onClick={onClick}>
+         <Box sx={{
+            display: 'flex',
+            padding: `14px 20px`,
+            justifyContent: 'center',
+            width: '60%',
+            textAlign: 'center',
+            color: currentPage ? '#f0f0f0' : Colors.paleDarkBlue,
+            ...(currentPage ?
+               { backgroundColor: Colors.lightBlue }
+               :
+               {
+                  "&:hover": {
+                     borderBottom: `1px solid ${Colors.darkRed}`,
+                     color: Colors.darkRed
+                  }
+               }),
+         }}>
+            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 2}}>
+               <Box sx={{ ...styles.icon, backgroundImage: `url(/icons/${icon}${currentPage ? '_light' : ''}.png)` }} />
+               <Text style={{ color: 'inherit' }}>{text}</Text>
+            </Box>
+         </Box>
+      </Link>
+
+   )
+}
+
+const styles = {
+   leftMenuMainContainer: {
+      position: 'fixed',
+      display: { xs: 'none', sm: 'flex', md: 'flex', lg: 'flex' },
+      alignItems: 'center',
+      justifyContent: 'space-around',
+      height: '80px',
+      width: '100%',
+      backgroundColor: '#fff',
+      borderBottom: `1px solid #00000010`,
+      padding: `40px 20px`,
+      zIndex: 9999999
+   },
+   userBox: {
+      backgroundColor: '#00000017',
+      position: 'fixed',
+      bottom: 0,
+      padding: `10px 20px`,
+      borderRadius: '10px 10px 0px 0px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      cursor: 'pointer',
+      gap: 1,
+      width: 150
+   },
+   userButtonContainer: {
+      borderRadius: '5px',
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'center',
+      padding: `5px 0px`,
+      "&:hover": {
+         backgroundColor: '#ddd',
+         // transitionDelay: '1s',
+         cursor: 'pointer'
+      }
+   },
+   icon: {
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center center',
+      width: '15px',
+      height: '15px',
+      marginRight: '0px',
+      backgroundImage: `url('/icons/engine_icon.png')`,
+   },
+   menuResponsive: {
+      position: 'fixed',
+      maxHeight: '40px',
+      width: '100%',
+      backgroundColor: '#f9f9f9',
+      borderRight: `1px solid #00000010`,
+      padding: `30px`,
+      alignItems: 'center',
+      justifyContent: 'right',
+      display: 'flex',
+      zIndex: 99999
+   },
+   iconMenuOpen: {
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center center',
+      width: '35px',
+      height: '35px',
+      marginLeft: '0px',
+      backgroundImage: `url('/icons/Hamburger_icon.png')`,
+      opacity: 0.7
+   },
+   iconMenuClose: {
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center center',
+      width: '55px',
+      height: '55px',
+      marginLeft: '0px',
+      backgroundImage: `url('/icons/close_menu_icon.png')`,
+      opacity: 0.7
+   },
+   menuMobileContainer: {
+      position: 'fixed',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      minHeight: '100vh',
+      backgroundColor: '#f9f9f9',
+      borderRight: `1px solid #00000010`,
+      padding: `40px 20px`,
+      gap: 4,
+      zIndex: 99999999,
+
+   },
+}
