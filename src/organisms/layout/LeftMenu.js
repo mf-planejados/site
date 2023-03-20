@@ -17,24 +17,23 @@ export const LeftMenu = ({ menuItems = [] }) => {
 
    return (
       <>
-         {!navBar ? 
-         //Menu Desktop
-         <>
-            <Box sx={styles.leftMenuMainContainer}>
-               <Box sx={{
-                  ...styles.icon,
-                  backgroundImage: `url('/logo.png')`,
-                  backgroundSize: 'contain',
-                  height: 50,
-                  width: 120,
-                  left: 0,
-                  display: 'flex',
-                  "&:hover": {
-                     cursor: 'pointer', opacity: 0.8
-                  }
-               }} onClick={() => router.push('/home/Home')} />
-               < Box sx={{ display: 'flex', width: '80%',justifyContent: 'center'}}>
-                  {menuItems.map((item, index) =>
+         {!navBar ?
+            //Menu Desktop
+            <>
+               <Box sx={styles.leftMenuMainContainer}>
+                  <Box sx={{
+                     ...styles.icon,
+                     backgroundImage: `url('/logo.png')`,
+                     backgroundSize: 'contain',
+                     height: 60,
+                     width: 120,
+                     left: 0,
+                     "&:hover": {
+                        cursor: 'pointer', opacity: 0.8
+                     }
+                  }} onClick={() => router.push('/home/Home')} />
+                  < Box sx={{ display: 'flex', width: '35%', justifyContent: 'center' }}>
+                     {menuItems.map((item, index) =>
                         <MenuItem
                            key={`${index}_${item.to}`}
                            to={item.to}
@@ -42,16 +41,16 @@ export const LeftMenu = ({ menuItems = [] }) => {
                            icon={item.icon}
                         />
                      )}
+                  </Box>
                </Box>
-            </Box>
-         </>
-            : 
+            </>
+            :
             //Menu Mobile
             <>
 
                <Box sx={styles.menuResponsive}>
                   <Box sx={{
-                     backgroundImage: `url('/icons/logo_green.svg')`,
+                     backgroundImage: `url('/logo.png')`,
                      backgroundSize: 'contain',
                      backgroundRepeat: 'no-repeat',
                      width: 1,
@@ -68,7 +67,7 @@ export const LeftMenu = ({ menuItems = [] }) => {
                      <Box sx={styles.menuMobileContainer}>
                         <Box sx={{
                            ...styles.icon,
-                           backgroundImage: `url('/icons/logo_green.svg')`,
+                           backgroundImage: `url('/logo.png')`,
                            backgroundSize: 'contain',
                            width: 1,
                            height: 30,
@@ -82,14 +81,14 @@ export const LeftMenu = ({ menuItems = [] }) => {
                         }} />
                         < Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                            {menuItems.map((item, index) =>
-                                 <MenuItem
-                                    key={`${index}_${item.to}`}
-                                    to={item.to}
-                                    text={item.text}
-                                    icon={item.icon}
-                                    onClick={() => setShowMenuMobile(false)}
-                                 />
-                              )}
+                              <MenuItem
+                                 key={`${index}_${item.to}`}
+                                 to={item.to}
+                                 text={item.text}
+                                 icon={item.icon}
+                                 onClick={() => setShowMenuMobile(false)}
+                              />
+                           )}
                         </Box>
                      </Box>
                   </> : ''}
@@ -107,7 +106,7 @@ const MenuItem = (props) => {
       <Link href={to} onClick={onClick}>
          <Box sx={{
             display: 'flex',
-            padding: `14px 20px`,
+            padding: `20px 15px`,
             justifyContent: 'center',
             width: '60%',
             textAlign: 'center',
@@ -118,13 +117,18 @@ const MenuItem = (props) => {
                {
                   "&:hover": {
                      borderBottom: `1px solid ${Colors.darkRed}`,
-                     color: Colors.darkRed
+                     color: Colors.darkRed,
+                     fontWeight: 'bold',
                   }
                }),
          }}>
-            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 2}}>
+            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 2,  }}>
                <Box sx={{ ...styles.icon, backgroundImage: `url(/icons/${icon}${currentPage ? '_light' : ''}.png)` }} />
-               <Text style={{ color: 'inherit' }}>{text}</Text>
+               <Text small style={{ color: 'inherit', width: 80,
+             "&:hover": {
+               fontWeight: 'bold',
+               
+            }}}>{text}</Text>
             </Box>
          </Box>
       </Link>
@@ -137,13 +141,14 @@ const styles = {
       position: 'fixed',
       display: { xs: 'none', sm: 'flex', md: 'flex', lg: 'flex' },
       alignItems: 'center',
-      justifyContent: 'space-around',
-      height: '80px',
+      justifyContent: 'space-between',
+      height: '95px',
       width: '100%',
       backgroundColor: '#fff',
       borderBottom: `1px solid #00000010`,
       padding: `40px 20px`,
-      zIndex: 9999999
+      zIndex: 9999999,
+      boxShadow: `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
    },
    userBox: {
       backgroundColor: '#00000017',
@@ -185,13 +190,15 @@ const styles = {
       position: 'fixed',
       maxHeight: '40px',
       width: '100%',
-      backgroundColor: '#f9f9f9',
+      backgroundColor: '#fff',
       borderRight: `1px solid #00000010`,
       padding: `30px`,
       alignItems: 'center',
       justifyContent: 'right',
       display: 'flex',
-      zIndex: 99999
+      zIndex: 99999,
+      boxShadow: `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
+
    },
    iconMenuOpen: {
       backgroundSize: 'cover',

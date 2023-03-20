@@ -4,8 +4,10 @@ import { Colors, LeftMenu } from '../organisms'
 import '../styles/globals.css'
 
 const menuItems = [
-   { to: '/home/Home', text: 'Home' },
-   { to: '/portifolio/portifolio', text: 'Projetos' },
+   { to: '/home/Home', text: 'HOME' },
+   { to: '/portifolio/portifolio', text: 'PORTIFÓLIO' },
+   { to: '/portifolio/portifolio', text: 'SOBRE NÓS' },
+   { to: '/portifolio/portifolio', text: 'CONTATO' },
 ];
 
 function App({ Component, pageProps }) {
@@ -31,14 +33,15 @@ const styles = {
       width: '100%',
    },
    contentContainer: {
+      marginTop: '120px',
       display: "flex",
       width: '100%',
       flexDirection: 'column',
       flex: 1,
       gap: `35px`,
-      backgroundColor: Colors.background,
-      padding: { xs: `30px`, xm: `25px`, md: `50px`, lg: `50px` },
-      paddingBottom: `60px`,
+      backgroundColor: '#fff',
+      padding: { xs: `30px`, xm: `25px`, md: `50px`, lg: `0px 80px 0px 80px` },
+      // paddingBottom: `60px`,
       overflowY: 'hidden',
       marginTop: { xs: `60px`, xm: `0px`, md: `0px`, lg: `0px` }
    },
