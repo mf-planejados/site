@@ -42,7 +42,7 @@ const styles = {
       backgroundColor: '#fff',
       padding: { xs: `30px`, xm: `25px`, md: `50px`, lg: `0px 80px 0px 80px` },
       // paddingBottom: `60px`,
-      overflowY: 'hidden',
+      overflowY: 'scroll',
       marginTop: { xs: `60px`, xm: `0px`, md: `0px`, lg: `0px` }
    },
 }
