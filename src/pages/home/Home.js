@@ -1,6 +1,7 @@
 import { Box, ContentContainer, Text } from "../../atoms"
 import { Colors, } from "../../organisms"
 import { SectionAbout } from "../../organisms/sections/sectionAbout"
+import { Caroussel } from "../../organisms/slider/slider"
 
 export default function Home(props) {
    return (
@@ -49,6 +50,12 @@ export default function Home(props) {
                   </Box>
                </ContentContainer>
             </Box>
+         </Box>
+
+         <Box sx={{
+            height: '250px',
+         }}>
+            <Caroussel />
          </Box>
 
          <SectionAbout />
