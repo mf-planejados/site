@@ -1,6 +1,6 @@
 import { Box } from '../atoms'
 import { AppProvider } from '../context/AppContext'
-import { Colors, LeftMenu } from '../organisms'
+import { Colors, HeaderMenu } from '../organisms'
 import '../styles/globals.css'
 
 const menuItems = [
@@ -14,7 +14,7 @@ function App({ Component, pageProps }) {
    return (
          <AppProvider>
             <Box sx={styles.bodyContainer}>
-               <LeftMenu menuItems={menuItems} />
+               <HeaderMenu menuItems={menuItems} />
                <Box sx={styles.contentContainer}>
                   <Component {...pageProps} />
                </Box>

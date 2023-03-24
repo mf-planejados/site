@@ -6,7 +6,7 @@ import { Box, Text } from "../../atoms"
 import { Colors } from "./Colors"
 import Hamburger from "hamburger-react"
 
-export const LeftMenu = ({ menuItems = [] }) => {
+export const HeaderMenu = ({ menuItems = [] }) => {
 
    const router = useRouter()
 

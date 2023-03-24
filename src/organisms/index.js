@@ -3,7 +3,7 @@ export { SearchBar } from "./searchBar/searchBar";
 export { CustomDropzone } from "./dropzone/dropzone";
 export { DropList } from "./droplist/droplist";
 export { Colors } from "./layout/Colors";
-export { LeftMenu } from "./layout/LeftMenu";
+export { HeaderMenu } from "./layout/headerMenu";
 export { Table } from "./table/Table";
 export { CheckBoxGroup } from "./checkBoxGroup/checkBoxGroup";
 export { Alert } from "./alert/alert";
