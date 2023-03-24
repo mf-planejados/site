@@ -4,8 +4,9 @@ import { Colors, HeaderMenu } from '../organisms'
 import '../styles/globals.css'
 
 const menuItems = [
-   { to: '/home/Home', text: 'HOME' },
+   { to: '/home/HomePage', text: 'HOME' },
    { to: '/portifolio/portifolio', text: 'PORTIFÓLIO' },
+   { to: '/portifolio/portifolio', text: 'PRODUTOS' },
    { to: '/portifolio/portifolio', text: 'SOBRE NÓS' },
    { to: '/portifolio/portifolio', text: 'CONTATO' },
 ];

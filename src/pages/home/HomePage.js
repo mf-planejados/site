@@ -3,7 +3,7 @@ import { Colors, } from "../../organisms"
 import { SectionAbout } from "../../organisms/sections/sectionAbout"
 import { Caroussel } from "../../organisms/slider/slider"
 
-export default function Home(props) {
+export default function HomePage() {
    return (
       <Box fullWidth sx={styles.container}>
          <Box fullWidth sx={styles.containerSection}>
