@@ -106,7 +106,7 @@ const MenuItem = (props) => {
       <Link href={to} onClick={onClick}>
          <Box sx={{
             display: 'flex',
-            padding: `20px 15px`,
+            padding: `20px 12px`,
             justifyContent: 'center',
             width: '60%',
             textAlign: 'center',
@@ -146,7 +146,7 @@ const styles = {
       width: '100%',
       backgroundColor: '#fff',
       borderBottom: `1px solid #00000010`,
-      padding: `40px 20px`,
+      padding: `40px 40px`,
       zIndex: 9999999,
       boxShadow: `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
    },

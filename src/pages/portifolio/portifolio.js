@@ -1,7 +1,7 @@
 import { Text } from "../../atoms"
 import { Colors, } from "../../organisms"
 
-export default function Portifolio(props) {
+ function Portifolio() {
    return (
    <Text>Hello Portifolio</Text>
 )
@@ -18,3 +18,5 @@ const styles = {
       position: 'relative'
    },
 }
+
+export default Portifolio();

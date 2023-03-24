@@ -2,7 +2,8 @@ import Image from "next/image";
 import { Box, Text } from "../../atoms";
 import { Colors } from "../layout/Colors";
 import Slider from "react-slick";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { tooltipClasses, useMediaQuery, useTheme } from "@mui/material";
 
 const image = [
     {
@@ -33,12 +34,12 @@ const image = [
     {
         id: '05',
         url: '/comodos/area-externa.jpg',
-        partHouse: 'Espaço Externo'
+        partHouse: 'Escritório'
     },
     {
         id: '05',
         url: '/comodos/area-externa.jpg',
-        partHouse: 'Espaço Externo'
+        partHouse: 'Corporativo'
     },
 
 ]
@@ -48,6 +49,9 @@ export const Caroussel = () => {
     const [showArrows, setShowArrows] = useState(true)
     const [left, setLeft] = useState(0)
 
+    const theme = useTheme()
+    const widthCarousel = useMediaQuery('(min-width:1536px)')
+    
     return (
         <>
             <Box sx={styles.container}>
@@ -83,8 +87,11 @@ export const Caroussel = () => {
                             }} />
                             <Text title style={{
                                 position: 'absolute',
+                                backgroundColor: '#0f0f0f',
+                                opacity: 0.7,
+                                width: '96.5%',
                                 top: '50%',
-                                left: '50%',
+                                left: '49%',
                                 textWeight: 'bold',
                                 transform: 'translate(-50%, -50%)',
                                 color: '#fff',
@@ -134,7 +141,7 @@ export const Caroussel = () => {
                                     cursor: 'pointer', opacity: 0.8
                                 }
                             }} onClick={() => {
-                                setLeft(left == -45 ? 0 : left - 15)
+                                setLeft(!widthCarousel ? left == -45 ? 0 : left - 15 : left == -15 ? 0 : left - 15)
                                 console.log('esquerda')
                             }} />
                         </Box>
