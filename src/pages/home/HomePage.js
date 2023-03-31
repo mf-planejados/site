@@ -52,7 +52,7 @@ export default function HomePage() {
          </Box>
 
          <Box sx={{
-            height: '250px',
+            height: '350px',
          }}>
             <Carousel />
          </Box>

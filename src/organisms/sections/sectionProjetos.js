@@ -38,14 +38,16 @@ export const SectionProjects = () => {
         <>
             <Box fullWidth sx={styles.container}>
                 <ContentContainer border styles={{ backgroundColor: 'pink', }}>
-                    <Box sx={{ flexDirection: {xs:`column`, xm: 'row', md: 'row',lg: 'row'}, display: 'flex' }}>
-                        <CarouselSlider data={image} />
-                        <Box sx={{ padding: '30px 10px 30px 30px', alignItems: 'center', justifyContent: 'center', }}>
+                    <Box sx={{ flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, display: 'flex' }}>
+                        <Box  sx={{width: '60%'}}>
+                            <CarouselSlider data={image} slideShow={2} autoplaySlide={true}/>
+                        </Box>
+                        <Box sx={{ padding: '30px 10px 30px 30px', alignItems: 'center', justifyContent: 'center', width: '50%'}}>
                             <Text title bold style={{
                                 ...styles.text, padding: '0px 10px 5px 10px', borderBottom: `2px solid ${Colors.darkRed}`,
                                 color: Colors.darkRed, width: '200px', margin: 'auto'
                             }}>Nossos projetos</Text>
-                            <Text style={{...styles.text, padding: '30px 10px 5px 10px',}}> Nossa empresa conta com um processo de desenvolvimento bem planejado, desde o atendimento até a entrega.
+                            <Text style={{ ...styles.text, padding: '30px 10px 5px 10px', }}> Nossa empresa conta com um processo de desenvolvimento bem planejado, desde o atendimento até a entrega.
                                 Contamos com uma enorme variedade de modelos,
                                 e orçamento feito presencialmente para melhor entendimento do seu sonho.</Text>
                             <Box sx={{ padding: '0px 40px 0px 40px', alignItems: 'center', justifyContent: 'center', }}>
