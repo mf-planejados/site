@@ -56,7 +56,7 @@ export const SectionAbout = (props) => {
                             </Text>
                         </Box>
                         <Box sx={{
-                            display: 'flex',
+                            display: { xs: `none`, xm: 'flex', md: 'flex', lg: 'flex' },
                             flexDirection: 'column',
                             justifyContent: 'center',
                             alignItems: 'center',
