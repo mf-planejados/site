@@ -39,10 +39,10 @@ export const SectionProjects = () => {
             <Box fullWidth sx={styles.container}>
                 <ContentContainer border styles={{ backgroundColor: 'pink', }}>
                     <Box sx={{ flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, display: 'flex' }}>
-                        <Box  sx={{width: '60%'}}>
+                        <Box  sx={{width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' }}}>
                             <CarouselSlider data={image} slideShow={2} autoplaySlide={true}/>
                         </Box>
-                        <Box sx={{ padding: '30px 10px 30px 30px', alignItems: 'center', justifyContent: 'center', width: '50%'}}>
+                        <Box sx={{ padding: { xs: `40px 10px 10px 10px`, xm: '30px 10px 30px 30px', md: '30px 10px 30px 30px', lg: '30px 10px 30px 30px' }, alignItems: 'center', justifyContent: 'center', width: { xs: `100%`, xm: '50%', md: '50%', lg: '50%' }}}>
                             <Text title bold style={{
                                 ...styles.text, padding: '0px 10px 5px 10px', borderBottom: `2px solid ${Colors.darkRed}`,
                                 color: Colors.darkRed, width: '200px', margin: 'auto'

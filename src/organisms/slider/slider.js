@@ -49,7 +49,7 @@ export const Carousel = () => {
     return (
         <>
             <Box sx={styles.container}>
-                <CarouselSlider data={image} slideShow={widthCarousel ? 5 : 4} text={true} />
+                <CarouselSlider containerWidth={'95%'} data={image} showArrows slideShow={widthCarousel ? 6 : 5} text={true} width={250} height={180} controls />
             </Box>
         </>
     )
@@ -60,7 +60,8 @@ const styles = {
         // backgroundColor: 'red',
         marginTop: 10,
         left: 0,
-        width: '100%',
+        width: { xs: `80%`, xm: `100%`, md: `100%`, lg: `100%` },
+        marginLeft: { xs: `10%`, xm: `2.5%`, md: `2.5%`, lg: `2.5%` },
         height: '250px',
         position: 'absolute',
         alignItems: 'center',

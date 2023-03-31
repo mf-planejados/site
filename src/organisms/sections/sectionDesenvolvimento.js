@@ -41,17 +41,17 @@ export const SectionDevelopment = () => {
     return (
         <>
             <Box sx={styles.container}>
-                <Box sx={{ flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    <Box sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <Box sx={{ flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Box sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
                         <Box >
                             <Text title bold style={styles.title}>Etapas de desenvolvimento do seu sonho!</Text>
                         </Box>
-                        <Box sx={{alignItems: 'center', justifyContent: 'center', display: 'flex',}}>
+                        <Box sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
                             <Text style={styles.text}>Nossa empresa conta com um processo de desenvolvimento bem planejado, desde o atendimento até a entrega. Contamos com uma enorme variedade de modelos, e orçamento feito presencialmente para melhor entendimento do seu sonho.</Text>
                         </Box>
                     </Box>
 
-                    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '30px 180px 0px 180px' }}>
+                    <Box sx={{ width: '100%', display: 'flex',flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, justifyContent: 'center', padding: { xs: '20px 100px', xm: '30px 180px 0px 180px', md: '30px 180px 0px 180px', lg: '30px 180px 0px 180px' }}}>
                         {DevelopmentProcess.map((item) => (
                             <>
                                 <Box sx={{
@@ -63,7 +63,6 @@ export const SectionDevelopment = () => {
                                         justifyContent: 'center',
                                         width: 'auto',
                                         height: '90px',
-                                        
                                     }}>
                                         <Box sx={{
                                             backgroundSize: 'contain',
@@ -82,6 +81,8 @@ export const SectionDevelopment = () => {
                                         textWeight: 'bold',
                                         color: '#fff',
                                         textAlign: 'center',
+                                        marginBottom: { xs: `40px`, xm: '0px', md: '0px', lg: '0px' }
+
                                     }}>{item.name}</Text>
                                 </Box>
                                 {item.option == true ?
@@ -92,13 +93,14 @@ export const SectionDevelopment = () => {
                                         backgroundSize: 'contain',
                                         backgroundColor: 'transparent',
                                         padding: '15px',
-                                        filter: 'brightness(0) invert(1)'
+                                        filter: 'brightness(0) invert(1)',
+                                        display: { xs: `none`, xm: 'flex', md: 'flex', lg: 'flex' }
                                     }} />
                                     : ''}
                             </>
                         ))}
                     </Box>
-                    <Button text='Solicite seu orçamento' style={{width: '200px', marginTop: '30px'}}/>
+                    <Button text='Solicite seu orçamento' style={{ width: '200px', marginTop: '30px' }} />
                 </Box>
             </Box>
         </>
@@ -110,9 +112,11 @@ const styles = {
         backgroundColor: Colors.darkGray,
         marginTop: 10,
         left: 0,
-        width: '100%',
-        height: '430px',
-        position: 'absolute',
+        width: { xs: `auto`, xm: '100%', md: '100%', lg: '100%' },
+        height: { xs: `auto`, xm: '430px', md: '430px', lg: '430px' },
+        position: { xs: `relative`, xm: 'absolute', md: 'absolute', lg: 'absolute' },
+        padding: { xs: `20px`, xm: '0px', md: '0px', lg: '0px' },
+        borderRadius: { xs: `20px`, xm: '0px', md: '0px', lg: '0px' },
         alignItems: 'center',
         justifyContent: 'center',
         display: 'flex',
@@ -125,8 +129,8 @@ const styles = {
     text: {
         textAlign: 'center',
         color: '#fff',
-        padding: '30px 80px 0px 80px',
-        width: '70%',
+        padding: { xs: '20px', xm: '30px 80px 0px 80px', md: '30px 80px 0px 80px', lg: '30px 80px 0px 80px' },
+        width: { xs: `auto`, xm: '70%', md: '70%', lg: '70%' },
     },
     icon: {
         backgroundImage: `url('/logo.png')`,

@@ -6,8 +6,8 @@ export default function HomePage() {
    return (
       <Box fullWidth sx={styles.container}>
          <Box fullWidth sx={styles.containerSection}>
-            <Box sx={{ display: 'flex', width: '100%', marginTop: 15, }}>
-               <ContentContainer row fullWidth style={{height: 480}} gap={0}>
+            <Box sx={{ display: 'flex', width: '100%', marginTop: { xs: -5, xm: 15, md: 15, lg: 15 }, }}>
+               <ContentContainer row fullWidth style={{ height: { xs: 'auto', xm: 480, md: 480, lg: 480 }, flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, boxShadow: { xs: `none`, }} } gap={0}>
                   <Box sx={{
                      display: 'flex',
                      flexDirection: 'column',
@@ -22,18 +22,22 @@ export default function HomePage() {
                         ...styles.icon,
                         backgroundImage: `url('/logo.png')`,
                         backgroundSize: 'contain',
-                        marginRight: 10,
+                        // marginRight: 10,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: 'pink',
                         backgroundRepeat: 'no-repeat',
                         height: 123,
                         width: 250,
                         left: 0,
+                        display: { xs: 'none', xm: 'flex', md: 'flex', lg: 'flex' }
                      }} onClick={() => router.push('/home/Home')} />
 
-                     <Box sx={{ display: 'flex', width: '60%', marginTop: 5, }}>
-                        <Text title bold style={{ color: Colors.darkRed }}>Faça seu orçamento,  <Text title > e tenha seu sonho planejado</Text> do seu jeito</Text>
+                     <Box sx={{ display: 'flex', width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' }, marginTop: 5, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text title bold style={{ color: Colors.darkRed, textAlign: 'center' }}>Faça seu orçamento,  <Text title > e tenha seu sonho planejado</Text> do seu jeito</Text>
                      </Box>
-                     <Box sx={{ display: 'flex', width: '60%', marginTop: 2, }}>
-                        <Text small bold style={{ color: Colors.darkBlue }}>Compromisso, confiança e agilidade. <Text small>Quem não gostaria de planejar os moveis de casa sob medida?</Text></Text>
+                     <Box sx={{ display: 'flex', width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' }, marginTop: 2, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text small bold style={{ color: Colors.darkBlue, textAlign: 'center' }}>Compromisso, confiança e agilidade. <Text small>Quem não gostaria de planejar os moveis de casa sob medida?</Text></Text>
                      </Box>
                   </Box>
 
@@ -44,6 +48,7 @@ export default function HomePage() {
                      alignItems: 'center',
                      flex: 1,
                      gap: 3,
+                     marginTop: { xs: `30px`, xm: '0px', md: '0px', lg: '0px' }
                   }}>
                      <Box sx={styles.imageHeader} />
                   </Box>
@@ -52,7 +57,7 @@ export default function HomePage() {
          </Box>
 
          <Box sx={{
-            height: '350px',
+            height: '300px',
          }}>
             <Carousel />
          </Box>
@@ -60,7 +65,8 @@ export default function HomePage() {
          <SectionAbout />
 
          <Box sx={{
-            height: '600px',
+            height: { xs: `auto`, xm: '600px', md: '600px', lg: '600px' },
+            marginBottom: { xs: `100px`, xm: '0px', md: '0px', lg: '0px' }
          }}>
             <SectionDevelopment />
          </Box>
@@ -100,7 +106,7 @@ const styles = {
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center',
       backgroundImage: `url('/header-image.jpeg')`,
-      width: '90%',
-      height: '90%'
+      width: { xs: '300px', xm: '90%', md: '90%', lg: '90%' },
+      height: { xs: '250px', xm: '90%', md: '90%', lg: '90%' }
    },
 }
