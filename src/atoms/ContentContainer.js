@@ -1,3 +1,4 @@
+import { Colors } from '../organisms';
 import { Box } from './Box';
 
 /*
@@ -19,13 +20,15 @@ export const ContentContainer = (props) => {
       fullWidth = false,
       gap = 2,
       width = null,
-      style = {}
+      style = {},
+      border = false
    } = props;
 
    return (
       <Box sx={{
          ...styles.contentContainer,
          gap,
+         ...(border && {border: `1px solid ${Colors.darkRed}`}),
          ...(width && { width }),
          ...(fullWidth && { flex: 1 }),
          ...(row ?
@@ -40,6 +43,7 @@ export const ContentContainer = (props) => {
                ...(right && { alignItems: 'flex-end' }),
             }),
          ...style
+         
       }}>
          {children}
       </Box>
@@ -55,5 +59,6 @@ const styles = {
       borderRadius: `12px`,
       backgroundColor: '#fff',
       boxShadow: `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
+      
    }
 }
