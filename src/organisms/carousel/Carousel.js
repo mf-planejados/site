@@ -5,17 +5,21 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useMediaQuery, useTheme } from "@mui/material";
 
-export const CarouselSlider = ({ data }) => {
+export const CarouselSlider = (props) => {
 
-  const theme = useTheme()
-  const widthCarousel = useMediaQuery('(min-width:1536px)')
+  const {
+    data = [],
+    slideShow = 0,
+    text = false,
+    autoplaySlide = false
+  } = props;
 
   const settings = {
     dots: true,
-    infinite: true,
-    slidesToShow: widthCarousel ? 3 : 2,
+    infinite: false,
+    slidesToShow: slideShow,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: autoplaySlide,
     autoplaySpeed: 2500,
     pauseOnHover: true,
     responsive: [
@@ -52,8 +56,24 @@ export const CarouselSlider = ({ data }) => {
     <Box sx={styles.container}>
       <Slider {...settings}>
         {data?.map((item) => (
-          <Box key={item.id}>
+          <Box sx={{
+            position: 'relative',
+          }} key={item.id} >
             <Box sx={{ ...styles.imageCarousel, backgroundImage: `url('${item.url}')` }} />
+            {text ?
+              <Text title style={{
+                position: 'absolute',
+                backgroundColor: '#0f0f0f',
+                opacity: 0.7,
+                width: '50%',
+                top: '50%',
+                left: '50%',
+                textWeight: 'bold',
+                transform: 'translate(-50%, -50%)',
+                color: '#fff',
+                textAlign: 'center',
+              }}>{item.partHouse}</Text>
+              : ''}
           </Box>
         ))
         }
@@ -64,13 +84,13 @@ export const CarouselSlider = ({ data }) => {
 
 const styles = {
   container: {
-    width: {xs:`100%`, xm: `60%`, md: `60%`,lg: `60%`},
-    
+    width: '100%',
+
   },
   imageCarousel: {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    width: {xs:`100%`, xm: `320px`, md: `320px`,lg: `320px`},
+    width: { xs: `100%`, xm: `320px`, md: `320px`, lg: `320px` },
     height: '300px',
     overflow: 'hidden',
   }

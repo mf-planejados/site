@@ -63,6 +63,7 @@ export const SectionDevelopment = () => {
                                         justifyContent: 'center',
                                         width: 'auto',
                                         height: '90px',
+                                        
                                     }}>
                                         <Box sx={{
                                             backgroundSize: 'contain',
@@ -72,11 +73,10 @@ export const SectionDevelopment = () => {
                                             color: '#fff',
                                             width: '150px',
                                             height: '80px',
+                                            filter: 'brightness(0) invert(1)'
                                         }} />
                                     </Box>
                                     <Text small style={{
-                                        backgroundColor: '#0f0f0f',
-                                        opacity: 0.7,
                                         padding: '5px',
                                         width: '100%',
                                         textWeight: 'bold',
@@ -92,7 +92,7 @@ export const SectionDevelopment = () => {
                                         backgroundSize: 'contain',
                                         backgroundColor: 'transparent',
                                         padding: '15px',
-                                        color: '#fff',
+                                        filter: 'brightness(0) invert(1)'
                                     }} />
                                     : ''}
                             </>
