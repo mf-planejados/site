@@ -1,14 +1,13 @@
 import { Box, ContentContainer, Text } from "../../atoms"
-import { Colors, } from "../../organisms"
-import { SectionAbout } from "../../organisms/sections/sectionAbout"
-import { Caroussel } from "../../organisms/slider/slider"
+import { Colors, Carousel } from "../../organisms"
+import { SectionAbout, SectionDevelopment, SectionProjects } from "../../organisms/sections/index"
 
 export default function HomePage() {
    return (
       <Box fullWidth sx={styles.container}>
          <Box fullWidth sx={styles.containerSection}>
             <Box sx={{ display: 'flex', width: '100%', marginTop: 15, }}>
-               <ContentContainer row fullWidth style={{}} gap={0}>
+               <ContentContainer row fullWidth style={{height: 480}} gap={0}>
                   <Box sx={{
                      display: 'flex',
                      flexDirection: 'column',
@@ -31,7 +30,7 @@ export default function HomePage() {
                      }} onClick={() => router.push('/home/Home')} />
 
                      <Box sx={{ display: 'flex', width: '60%', marginTop: 5, }}>
-                        <Text title style={{ color: Colors.darkRed }}>Faça seu orçamento,  <Text title > e tenha seu sonho planejado</Text> do seu jeito</Text>
+                        <Text title bold style={{ color: Colors.darkRed }}>Faça seu orçamento,  <Text title > e tenha seu sonho planejado</Text> do seu jeito</Text>
                      </Box>
                      <Box sx={{ display: 'flex', width: '60%', marginTop: 2, }}>
                         <Text small bold style={{ color: Colors.darkBlue }}>Compromisso, confiança e agilidade. <Text small>Quem não gostaria de planejar os moveis de casa sob medida?</Text></Text>
@@ -55,10 +54,23 @@ export default function HomePage() {
          <Box sx={{
             height: '250px',
          }}>
-            <Caroussel />
+            <Carousel />
          </Box>
 
          <SectionAbout />
+
+         <Box sx={{
+            height: '600px',
+         }}>
+            <SectionDevelopment />
+         </Box>
+
+         <Box sx={{
+            height: 'auto',
+            marginBottom: 10
+         }}>
+            <SectionProjects />
+         </Box>
 
       </Box>
    )

@@ -1,4 +1,3 @@
-export { SectionHeader } from "./sections/sectionHeader";
 export { SearchBar } from "./searchBar/searchBar";
 export { CustomDropzone } from "./dropzone/dropzone";
 export { DropList } from "./droplist/droplist";
@@ -7,3 +6,5 @@ export { HeaderMenu } from "./layout/headerMenu";
 export { Table } from "./table/Table";
 export { CheckBoxGroup } from "./checkBoxGroup/checkBoxGroup";
 export { Alert } from "./alert/alert";
+export { Carousel } from './slider/slider';
+export { CarouselSlider } from './carousel/Carousel'

@@ -44,13 +44,18 @@ const image = [
 
 ]
 
-export const Caroussel = () => {
+export const Carousel = () => {
 
     const [showArrows, setShowArrows] = useState(true)
     const [left, setLeft] = useState(0)
+    console.log(left)
+
 
     const theme = useTheme()
     const widthCarousel = useMediaQuery('(min-width:1536px)')
+    const screenMobile = useMediaQuery('(min-width:600px)')
+    console.log(screenMobile)
+
     
     return (
         <>
@@ -104,7 +109,7 @@ export const Caroussel = () => {
                 {showArrows ?
                     <>
                         <Box sx={{
-                            justifyContent: 'space-between', width: '33%',
+                            justifyContent: 'space-between', width: { xs: '19.5%', sm: '33%', md: '33%', lg: '33%' },
                             alignItems: 'center', display: 'flex', left: 0, marginRight: 10, position: 'absolute',
                         }}>
                             <Box sx={{
@@ -122,7 +127,8 @@ export const Caroussel = () => {
                                     cursor: 'pointer', opacity: 0.8
                                 }
                             }} onClick={() => {
-                                setLeft(left < 0 ? left + 15 : 0)
+
+                                setLeft(screenMobile ? left < 0 ? left + 15 : 0 : left < 0 ? left + 14 : 0)
                                 console.log('direita')
                             }
                             } />
@@ -141,7 +147,7 @@ export const Caroussel = () => {
                                     cursor: 'pointer', opacity: 0.8
                                 }
                             }} onClick={() => {
-                                setLeft(!widthCarousel ? left == -45 ? 0 : left - 15 : left == -15 ? 0 : left - 15)
+                                setLeft(screenMobile ? !widthCarousel ? left == -45 ? 0 : left - 15 : left == -15 ? 0 : left - 15 : left <= -84 ? 0 : left - 14)
                                 console.log('esquerda')
                             }} />
                         </Box>
@@ -157,7 +163,8 @@ const styles = {
         // backgroundColor: 'red',
         marginTop: 10,
         left: 0,
-        width: '300%',
+        width: { xs: '500%', sm: '300%', md: '300%', lg: '300%' },
+        overflowY: 'hidden',
         height: '200px',
         position: 'absolute',
         alignItems: 'center',
