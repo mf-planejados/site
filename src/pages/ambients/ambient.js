@@ -156,8 +156,8 @@ export default function Portifolio() {
    return (
       <Box sx={styles.container}>
          <Box sx={styles.cardComodo}>
-            <Box sx={{ width: '80%', marginTop: 6 }}>
-               <Text title style={{ textAlign: 'left' }}>Veja alguns de nossos projetos entregues</Text>
+            <Box sx={{ width: '80%', marginTop: 7, marginRight: '20%' }}>
+               <Text title style={{ textAlign: 'center' }}>Veja alguns de nossos projetos entregues</Text>
             </Box>
             <ContentContainer style={{ position: 'fixed', right: 0, width: '25%', zIndex: 9999999999, marginTop: 1.5 }}>
                <DropList
@@ -175,9 +175,9 @@ export default function Portifolio() {
 
                {dataGalery == '' ?
                   <>
-                     <Box>
-                        <Text title style={{ textAlign: 'left' }}>No momento não há fotos.</Text>
-                        <Text title style={{ textAlign: 'left' }}>Estamos trabalhando para trazer mais projetos para você!</Text>
+                     <Box sx={{alignItems: 'center', justifyContent: 'center', width: '80%'}}>
+                        <Text  style={{ textAlign: 'center' }}>No momento não há fotos.</Text>
+                        <Text  style={{ textAlign: 'center' }}>Estamos trabalhando para trazer mais projetos para você!</Text>
                      </Box>
                   </>
                   :
