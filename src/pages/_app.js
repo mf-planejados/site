@@ -5,22 +5,23 @@ import '../styles/globals.css'
 
 const menuItems = [
    { to: '/home/HomePage', text: 'HOME' },
-   { to: '/portifolio/portifolio', text: 'PORTIFÓLIO' },
-   { to: '/portifolio/portifolio', text: 'PRODUTOS' },
-   { to: '/portifolio/portifolio', text: 'SOBRE NÓS' },
-   { to: '/portifolio/portifolio', text: 'CONTATO' },
+   { to: '/ambients/ambient', text: 'AMBIENTES'},
+   { to: '/', text: 'PRODUTOS' },
+   { to: '/', text: 'SOBRE NÓS' },
+   { to: '/', text: 'CONTATO' },
 ];
 
 function App({ Component, pageProps }) {
+   console.log(pageProps)
    return (
-         <AppProvider>
-            <Box sx={styles.bodyContainer}>
-               <HeaderMenu menuItems={menuItems} />
-               <Box sx={styles.contentContainer}>
-                  <Component {...pageProps} />
-               </Box>
+      <AppProvider>
+         <Box sx={styles.bodyContainer}>
+            <HeaderMenu menuItems={menuItems} />
+            <Box sx={styles.contentContainer}>
+               <Component {...pageProps} />
             </Box>
-         </AppProvider>
+         </Box>
+      </AppProvider>
    )
 }
 
@@ -34,7 +35,6 @@ const styles = {
       width: '100%',
    },
    contentContainer: {
-      marginTop: '120px',
       display: "flex",
       width: '100%',
       flexDirection: 'column',
@@ -44,6 +44,6 @@ const styles = {
       padding: { xs: `30px`, xm: `25px`, md: `50px`, lg: `0px 80px 0px 80px` },
       // paddingBottom: `60px`,
       overflowY: 'hidden',
-      marginTop: { xs: `60px`, xm: `0px`, md: `0px`, lg: `0px` }
+      marginTop: { xs: `60px`, xm: 10, md: 10, lg: 10 }
    },
 }
