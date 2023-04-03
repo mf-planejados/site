@@ -12,6 +12,8 @@ export const DropList = (props) => {
       vertical = false
    } = props;
 
+   console.log(props)
+
    const [open, setOpen] = useState(false)
 
    return (
@@ -69,7 +71,7 @@ export const DropList = (props) => {
                   >
                      {data.map((item, index) =>
                         <Box
-                           key={`${item._id}_droplist-${index}`}
+                           key={`${item.id}_droplist-${index}`}
                            sx={styles.dropListOptionItem}
                            onClick={() => {
                               setOpen(false)

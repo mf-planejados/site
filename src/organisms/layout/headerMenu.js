@@ -54,7 +54,7 @@ export const HeaderMenu = ({ menuItems = [] }) => {
                      backgroundSize: 'contain',
                      backgroundRepeat: 'no-repeat',
                      width: 1,
-                     height: 30,
+                     height: 40,
                      marginTop: 1,
                      "&:hover": {
                         cursor: 'pointer', opacity: 0.8
@@ -101,7 +101,6 @@ export const HeaderMenu = ({ menuItems = [] }) => {
 const MenuItem = (props) => {
 
    const { to, text, icon, currentPage, onClick } = props
-
    return (
       <Link href={to} onClick={onClick}>
          <Box sx={{
@@ -122,13 +121,17 @@ const MenuItem = (props) => {
                   }
                }),
          }}>
-            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 2,  }}>
+            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 2, }}>
                <Box sx={{ ...styles.icon, backgroundImage: `url(/icons/${icon}${currentPage ? '_light' : ''}.png)` }} />
-               <Text small style={{ color: 'inherit', width: 80,
-             "&:hover": {
-               fontWeight: 'bold',
-               
-            }}}>{text}</Text>
+               <Text small style={{
+                  color: 'inherit', width: 80,
+                  "&:hover": {
+                     fontWeight: 'bold',
+                  }
+               }}>{text}</Text>
+
+               <Box>
+               </Box>
             </Box>
          </Box>
       </Link>
@@ -188,11 +191,11 @@ const styles = {
    },
    menuResponsive: {
       position: 'fixed',
-      maxHeight: '40px',
+      maxHeight: '60px',
       width: '100%',
       backgroundColor: '#fff',
       borderRight: `1px solid #00000010`,
-      padding: `30px`,
+      padding: `40px`,
       alignItems: 'center',
       justifyContent: 'right',
       display: 'flex',

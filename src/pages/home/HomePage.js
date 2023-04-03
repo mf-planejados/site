@@ -6,7 +6,7 @@ export default function HomePage() {
    return (
       <Box fullWidth sx={styles.container}>
          <Box fullWidth sx={styles.containerSection}>
-            <Box sx={{ display: 'flex', width: '100%', marginTop: { xs: -5, xm: 15, md: 15, lg: 15 }, }}>
+            <Box sx={{ display: 'flex', width: '100%', }}>
                <ContentContainer row fullWidth style={{ height: { xs: 'auto', xm: 480, md: 480, lg: 480 }, flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, boxShadow: { xs: `none`, }} } gap={0}>
                   <Box sx={{
                      display: 'flex',

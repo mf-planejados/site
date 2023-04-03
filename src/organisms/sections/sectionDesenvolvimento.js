@@ -129,7 +129,7 @@ const styles = {
     text: {
         textAlign: 'center',
         color: '#fff',
-        padding: { xs: '20px', xm: '30px 80px 0px 80px', md: '30px 80px 0px 80px', lg: '30px 80px 0px 80px' },
+        padding: { xs: '20px 0px', xm: '30px 80px 0px 80px', md: '30px 80px 0px 80px', lg: '30px 80px 0px 80px' },
         width: { xs: `auto`, xm: '70%', md: '70%', lg: '70%' },
     },
     icon: {
