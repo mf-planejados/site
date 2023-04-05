@@ -3,6 +3,7 @@ import { Box, ContentContainer, Text } from "../../atoms"
 import { CarouselSlider, Colors, DropList, } from "../../organisms"
 import { useAppContext } from "../../context/AppContext"
 import { Backdrop, useMediaQuery } from "@mui/material"
+import { Footer } from "../../organisms/layout/footer"
 
 const comodos = [
    {
@@ -170,7 +171,7 @@ export default function Portifolio() {
                />
             </ContentContainer>
          </Box>
-         <ContentContainer style={{ marginTop: 10 }}>
+         <ContentContainer style={{ marginTop: 10,   marginBottom: 10 }}>
             <Box sx={styles.containerGalery}>
 
                {dataGalery == '' ?
@@ -221,6 +222,7 @@ export default function Portifolio() {
                <CarouselSlider containerWidth={'100%'} data={dataGalery} showArrows slideShow={1} text={true} width={600} height={480} controls thumb/>
             </Box>
          </Backdrop>
+         <Footer />
       </Box>
 
    )
@@ -228,7 +230,7 @@ export default function Portifolio() {
 
 const styles = {
    container: {
-      flex: 1
+      flex: 1,
    },
    cardComodo: {
       justifyContent: 'space-around',

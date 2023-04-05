@@ -1,5 +1,6 @@
 import { Box, ContentContainer, Text } from "../../atoms"
 import { Colors, Carousel } from "../../organisms"
+import { Footer } from "../../organisms/layout/footer"
 import { SectionAbout, SectionDevelopment, SectionProjects } from "../../organisms/sections/index"
 
 export default function HomePage() {
@@ -7,7 +8,7 @@ export default function HomePage() {
       <Box fullWidth sx={styles.container}>
          <Box fullWidth sx={styles.containerSection}>
             <Box sx={{ display: 'flex', width: '100%', }}>
-               <ContentContainer row fullWidth style={{ height: { xs: 'auto', xm: 480, md: 480, lg: 480 }, flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, boxShadow: { xs: `none`, }} } gap={0}>
+               <ContentContainer row fullWidth style={{ height: { xs: 'auto', xm: 480, md: 480, lg: 480 }, flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, boxShadow: { xs: `none`, } }} gap={0}>
                   <Box sx={{
                      display: 'flex',
                      flexDirection: 'column',
@@ -36,7 +37,7 @@ export default function HomePage() {
                      <Box sx={{ display: 'flex', width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' }, marginTop: 5, alignItems: 'center', justifyContent: 'center' }}>
                         <Text title bold style={{ color: Colors.darkRed, textAlign: 'center' }}>Faça seu orçamento,  <Text title > e tenha seu sonho planejado</Text> do seu jeito</Text>
                      </Box>
-                     <Box sx={{ display: 'flex', width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' }, marginTop: 2, alignItems: 'center', justifyContent: 'center'}}>
+                     <Box sx={{ display: 'flex', width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' }, marginTop: 2, alignItems: 'center', justifyContent: 'center' }}>
                         <Text small bold style={{ color: Colors.darkBlue, textAlign: 'center' }}>Compromisso, confiança e agilidade. <Text small>Quem não gostaria de planejar os moveis de casa sob medida?</Text></Text>
                      </Box>
                   </Box>
@@ -77,8 +78,9 @@ export default function HomePage() {
          }}>
             <SectionProjects />
          </Box>
-
+         <Footer />
       </Box>
+
    )
 }
 
