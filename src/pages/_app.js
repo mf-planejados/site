@@ -1,18 +1,19 @@
 import { Box } from '../atoms'
 import { AppProvider } from '../context/AppContext'
 import { Colors, HeaderMenu } from '../organisms'
+import { Footer } from '../organisms/layout/footer';
 import '../styles/globals.css'
 
 const menuItems = [
    { to: '/home/HomePage', text: 'HOME' },
-   { to: '/ambients/ambient', text: 'AMBIENTES'},
+   { to: '/ambients/ambient', text: 'AMBIENTES' },
    { to: '/', text: 'PRODUTOS' },
    { to: '/', text: 'SOBRE NÓS' },
    { to: '/', text: 'CONTATO' },
 ];
 
 function App({ Component, pageProps }) {
-   console.log(pageProps)
+  
    return (
       <AppProvider>
          <Box sx={styles.bodyContainer}>
@@ -21,6 +22,7 @@ function App({ Component, pageProps }) {
                <Component {...pageProps} />
             </Box>
          </Box>
+
       </AppProvider>
    )
 }
