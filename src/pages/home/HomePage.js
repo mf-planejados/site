@@ -35,7 +35,7 @@ export default function HomePage() {
                      }} onClick={() => router.push('/home/Home')} />
 
                      <Box sx={{ display: 'flex', width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' }, marginTop: 5, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text title bold style={{ color: Colors.darkRed, textAlign: 'center' }}>Faça seu orçamento,  <Text title > e tenha seu sonho planejado</Text> do seu jeito</Text>
+                        <Text title bold style={{ color: Colors.darkRed, textAlign: 'center' }}>FAÇA SEU ORÇAMENTO  <Text title > E TENHA SEU SONHO PLANEJADO</Text> DO SEU JEITO</Text>
                      </Box>
                      <Box sx={{ display: 'flex', width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' }, marginTop: 2, alignItems: 'center', justifyContent: 'center' }}>
                         <Text small bold style={{ color: Colors.darkBlue, textAlign: 'center' }}>Compromisso, confiança e agilidade. <Text small>Quem não gostaria de planejar os moveis de casa sob medida?</Text></Text>
@@ -63,7 +63,12 @@ export default function HomePage() {
             <Carousel />
          </Box>
 
-         <SectionAbout />
+         {/* <Box sx={{
+            height: { xs: `auto`, xm: '600px', md: '800px', lg: '800px' },
+            // marginBottom: { xs: `100px`, xm: '0px', md: '0px', lg: '0px' }
+         }}> */}
+            <SectionAbout />
+         {/* </Box> */}
 
          <Box sx={{
             height: { xs: `auto`, xm: '600px', md: '600px', lg: '600px' },

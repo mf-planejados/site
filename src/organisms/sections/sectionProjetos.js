@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import { Box, Button, ContentContainer, Text } from "../../atoms";
 import { CarouselSlider } from "../index";
 import { Colors } from "../layout/Colors";
+import { useMediaQuery } from "@mui/material";
 
 const image = [
     {
@@ -34,13 +35,15 @@ const image = [
 
 export const SectionProjects = () => {
 
+    const widthCarousel = useMediaQuery('(min-width:1536px)')
+
     return (
         <>
             <Box fullWidth sx={styles.container}>
                 <ContentContainer border styles={{ backgroundColor: 'pink', }}>
                     <Box sx={{ flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, display: 'flex' }}>
                         <Box  sx={{width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' }}}>
-                            <CarouselSlider data={image} slideShow={2} autoplaySlide={true}/>
+                            <CarouselSlider data={image} slideShow={widthCarousel ? 3 : 2} autoplaySlide={true}/>
                         </Box>
                         <Box sx={{ padding: { xs: `40px 10px 10px 10px`, xm: '30px 10px 30px 30px', md: '30px 10px 30px 30px', lg: '30px 10px 30px 30px' }, alignItems: 'center', justifyContent: 'center', width: { xs: `100%`, xm: '50%', md: '50%', lg: '50%' }}}>
                             <Text title bold style={{

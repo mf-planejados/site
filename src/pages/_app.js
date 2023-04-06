@@ -7,8 +7,7 @@ import '../styles/globals.css'
 const menuItems = [
    { to: '/home/HomePage', text: 'HOME' },
    { to: '/ambients/ambient', text: 'AMBIENTES' },
-   { to: '/', text: 'PRODUTOS' },
-   { to: '/', text: 'SOBRE NÓS' },
+   { to: '/product/products', text: 'PRODUTOS' },
    { to: '/', text: 'CONTATO' },
 ];
 
