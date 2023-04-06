@@ -141,7 +141,7 @@ export default function Portifolio() {
       data[posicaoImagemSelecionada],
       ...data.slice(0, posicaoImagemSelecionada),
       ...data.slice(posicaoImagemSelecionada + 1),
-    ]
+   ]
 
    const { setLoading } = useAppContext()
    const widthCarousel = useMediaQuery('(min-width:1536px)')
@@ -168,8 +168,14 @@ export default function Portifolio() {
    return (
       <Box sx={styles.container}>
          <Box sx={styles.cardComodo}>
-            <Box sx={{ width: { xs: '100%', xm: '80%', md: '80%', lg: '80%' }, marginTop:{ xs: 15, xm: 7, md: 7, lg: 7 } , marginRight: { xs: '0%', xm: '20%', md: '20%', lg: '20%' } }}>
-               <Text title style={{ textAlign: 'center' }}>Veja alguns de nossos projetos entregues</Text>
+            <Box sx={{
+               width: { xs: '100%', xm: '80%', md: '70%', lg: '70%' },
+               marginTop: { xs: 15, xm: 7, md: 7, lg: 7 },
+               marginRight: { xs: '0%', xm: '20%', md: '20%', lg: '20%' },
+              
+               borderBottom: `1px solid ${Colors.darkRed}`
+            }}>
+               <Text bold style={{ textAlign: 'center', fontSize: 30, marginBottom: 20, color: Colors.darkRed}}>Veja alguns de nossos projetos entregues</Text>
             </Box>
             <ContentContainer style={{ position: { xs: 'fixed', xm: 'fixed', md: 'fixed', lg: 'fixed' }, right: 0, width: { xs: '100%', xm: '25%', md: '25%', lg: '25%' }, zIndex: 999999, marginTop: { xs: -2, xm: 1.5, md: 1.5, lg: 1.5 } }}>
                <DropList
@@ -182,7 +188,7 @@ export default function Portifolio() {
                />
             </ContentContainer>
          </Box>
-         <ContentContainer style={{ marginTop: { xs: 5, xm: 10, md: 10, lg: 10 }, marginBottom: 10 }}>
+         <ContentContainer style={{ marginTop: { xs: 5, xm: 5, md: 5, lg: 5 }, marginBottom: 10 }}>
             <Box sx={styles.containerGalery}>
 
                {dataGalery == '' ?
@@ -240,9 +246,9 @@ export default function Portifolio() {
                   text={true}
                   width={widthCarousel ? 750 : 600}
                   height={widthCarousel ? 600 : 480}
-                  controls thumb 
+                  controls thumb
                   positionSelect={posicaoImagemSelecionada}
-                  />
+               />
                {/* <CarouselSlider
                   containerWidth={'100%'}
                   slider1={dataGalery}

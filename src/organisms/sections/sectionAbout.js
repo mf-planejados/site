@@ -1,15 +1,31 @@
 import { Box, Text, ContentContainer } from "../../atoms";
+import { Card } from "../card/card";
 import { Colors } from "../layout/Colors";
 
+const dataSocios = [
+    {
+        name: 'Vicente Fonseca',
+        title: 'Fundador',
+        url: '/img/Socio 1.jpeg',
+    },
+    {
+        name: 'Eder Moreira',
+        title: 'Sócio',
+        url: '/img/Socio 1.jpeg',
+    },
+    {
+        name: 'Andre Marques',
+        title: 'Sócio',
+        url: '/img/Socio 2.jpg',
+    },
+    {
+        name: 'Lourival de Souza',
+        title: 'Sócio',
+        url: '/img/Socio 3.jpg',
+    },
+]
+
 export const SectionAbout = (props) => {
-    const { title = '',
-        newButton = false,
-        newButtonAction = () => { },
-        saveButton = false,
-        saveButtonAction = () => { },
-        deleteButton = false,
-        deleteButtonAction = () => { }
-    } = props;
 
     return (
         <>
@@ -21,7 +37,7 @@ export const SectionAbout = (props) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                         width: '100%',
-                        height: '250px',
+                        // height: '250px',
                         flex: 1,
                         gap: 1,
 
@@ -33,7 +49,7 @@ export const SectionAbout = (props) => {
                             width: 180,
                             textAlign: 'center',
                             paddingBottom: 10
-                        }}>Sobre nós</Text>
+                        }}>SOBRE NÓS</Text>
                         <Box sx={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -56,15 +72,15 @@ export const SectionAbout = (props) => {
                             </Text>
                         </Box>
                         <Box sx={{
-                            display: { xs: `none`, xm: 'flex', md: 'flex', lg: 'flex' },
-                            flexDirection: 'column',
+                            display: { xs: `flex`, xm: 'flex', md: 'flex', lg: 'flex' },
+                            flexDirection: 'row',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            width: '80%',
-                            height: '500px',
+                            width: '60%',
+                            height: '400px',
                             gap: 3,
                         }}>
-                            <Box sx={styles.imageSobre} />
+                           <Card data={dataSocios}/>
                         </Box>
                     </Box>
                 </ContentContainer>
@@ -81,11 +97,8 @@ const styles = {
         alignItems: 'center',
         marginTop: 10,
         left: 0,
-        width: '100%',
     },
-    about: {
-        height: 480
-    },
+
     imageSobre: {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
