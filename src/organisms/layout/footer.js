@@ -61,8 +61,8 @@ export const Footer = ({ menuItems = [] }) => {
                         backgroundColor: 'none', 
                     }}>
                         <Text title style={{ ...styles.text }}>Venha nos visitar</Text>
-                        <Box sx={{ backgroundColor: 'pink', width: '200px', height: '130px' }}>
-                            <Text>Mapa</Text>
+                        <Box sx={{ width: '200px', height: '130px' }}>
+                        <Box sx={{ ...styles.icon, backgroundImage: `url('/maps-icon.png')`, width: '100%', height: '100%'}} />
                         </Box>
                     </ContentContainer>
                 </Box>
@@ -82,7 +82,7 @@ export const Footer = ({ menuItems = [] }) => {
 const styles = {
     container: {
         position: 'absolute',
-        height: { xs: `140%`, xm: '50%', md: '50%', lg: '50%' },
+        height: { xs: `145%`, xm: '50%', md: '50%', lg: '50%' },
         width: '100%',
         backgroundColor: Colors.background,
         zIndex: 999,
