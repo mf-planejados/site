@@ -135,9 +135,21 @@ export default function Portifolio() {
    const [dataGalery, setDataGalery] = useState([])
    const [showCarousel, setShowCarousel] = useState(false)
 
+   const [imagemSelecionada, setImagemSelecionada] = useState(data[0]);
+   const posicaoImagemSelecionada = data.indexOf(imagemSelecionada)
+   const imagensOrdenadas = [
+      data[posicaoImagemSelecionada],
+      ...data.slice(0, posicaoImagemSelecionada),
+      ...data.slice(posicaoImagemSelecionada + 1),
+    ]
+
    const { setLoading } = useAppContext()
    const widthCarousel = useMediaQuery('(min-width:1536px)')
+   const widthMobile = useMediaQuery('(max-width:600px)')
 
+   function selectedUrl(index) {
+      setUrlSelect(index)
+   }
 
    useEffect(() => {
       setLoading(true)
@@ -152,15 +164,14 @@ export default function Portifolio() {
          setLoading(false)
       }, 500)
    }
-   console.log('-------', showCarousel)
 
    return (
       <Box sx={styles.container}>
          <Box sx={styles.cardComodo}>
-            <Box sx={{ width: '80%', marginTop: 7, marginRight: '20%' }}>
+            <Box sx={{ width: { xs: '100%', xm: '80%', md: '80%', lg: '80%' }, marginTop:{ xs: 15, xm: 7, md: 7, lg: 7 } , marginRight: { xs: '0%', xm: '20%', md: '20%', lg: '20%' } }}>
                <Text title style={{ textAlign: 'center' }}>Veja alguns de nossos projetos entregues</Text>
             </Box>
-            <ContentContainer style={{ position: 'fixed', right: 0, width: '25%', zIndex: 9999999999, marginTop: 1.5 }}>
+            <ContentContainer style={{ position: { xs: 'fixed', xm: 'fixed', md: 'fixed', lg: 'fixed' }, right: 0, width: { xs: '100%', xm: '25%', md: '25%', lg: '25%' }, zIndex: 999999, marginTop: { xs: -2, xm: 1.5, md: 1.5, lg: 1.5 } }}>
                <DropList
                   data={comodos}
                   placeholder='Selecione um cômodo'
@@ -171,33 +182,35 @@ export default function Portifolio() {
                />
             </ContentContainer>
          </Box>
-         <ContentContainer style={{ marginTop: 10,   marginBottom: 10 }}>
+         <ContentContainer style={{ marginTop: { xs: 5, xm: 10, md: 10, lg: 10 }, marginBottom: 10 }}>
             <Box sx={styles.containerGalery}>
 
                {dataGalery == '' ?
                   <>
-                     <Box sx={{alignItems: 'center', justifyContent: 'center', width: '80%'}}>
-                        <Text  style={{ textAlign: 'center' }}>No momento não há fotos.</Text>
-                        <Text  style={{ textAlign: 'center' }}>Estamos trabalhando para trazer mais projetos para você!</Text>
+                     <Box sx={{ alignItems: 'center', justifyContent: 'center', width: '80%' }}>
+                        <Text style={{ textAlign: 'center' }}>No momento não há fotos.</Text>
+                        <Text style={{ textAlign: 'center' }}>Estamos trabalhando para trazer mais projetos para você!</Text>
                      </Box>
                   </>
                   :
-                  dataGalery.map((item) => (
-                     <Box key={item.id}>
+                  dataGalery.map((item, index) => (
+                     <Box key={index}>
                         <Box sx={{
                            ...styles.imgGalery,
                            backgroundImage: `url('${item.url}')`,
                            width: { xs: `350px`, xm: `280px`, md: `280px`, lg: `280px` },
                            height: { xs: '300px', xm: '250px', md: '250px', lg: '250px' },
-                           margin: '1px',
+                           margin: '10px',
                            "&:hover": {
                               opacity: 0.8,
                               cursor: 'pointer',
                               transition: '.5s'
                            }
-
-
-                        }} onClick={() => setShowCarousel(!showCarousel)} />
+                        }} onClick={() => {
+                           setImagemSelecionada(item)
+                           setShowCarousel(!showCarousel)
+                        }
+                        } />
                      </Box>
                   ))}
             </Box>
@@ -207,7 +220,7 @@ export default function Portifolio() {
             sx={{ color: '#fff', zIndex: 9999999999, }}
             open={showCarousel}
          >
-            <Box sx={{width: '90%'}} >
+            <Box sx={{ width: { xs: `85%`, xm: '90%', md: '90%', lg: '90%' } }} >
                <Box sx={{
                   backgroundImage: `url('/icons/close_menu_icon.png')`,
                   backgroundSize: 'contain',
@@ -219,7 +232,26 @@ export default function Portifolio() {
                      cursor: 'pointer', opacity: 0.8
                   }
                }} onClick={() => setShowCarousel(!showCarousel)} />
-               <CarouselSlider containerWidth={'100%'} data={dataGalery} showArrows slideShow={1} text={true} width={600} height={480} controls thumb/>
+               <CarouselSlider containerWidth={'100%'}
+                  data={imagensOrdenadas}
+                  showArrows
+                  slideShowThumb={widthCarousel ? 12 : widthMobile ? 4 : 8}
+                  slideShow={1}
+                  text={true}
+                  width={widthCarousel ? 750 : 600}
+                  height={widthCarousel ? 600 : 480}
+                  controls thumb 
+                  positionSelect={posicaoImagemSelecionada}
+                  />
+               {/* <CarouselSlider
+                  containerWidth={'100%'}
+                  slider1={dataGalery}
+                  slider2={dataGalery}
+                  showArrows
+                  // slideShow={1}
+                  text={true}
+                  controls
+                  thumb /> */}
             </Box>
          </Backdrop>
          <Footer />
@@ -243,7 +275,7 @@ const styles = {
    containerGalery: {
       display: 'flex',
       flexWrap: 'wrap',
-      justifyContent: { xs: `center`, xm: 'space-between', md: 'space-between', lg: 'space-between' },
+      justifyContent: { xs: `center`, xm: 'center', md: 'center', lg: 'center' },
       alignItems: 'center',
    },
    imgGalery: {

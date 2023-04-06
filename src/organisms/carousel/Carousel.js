@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Slider from "react-slick";
 import { Box, Text } from "../../atoms";
 import "slick-carousel/slick/slick.css";
@@ -7,7 +7,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 
 export const CarouselSlider = (props) => {
 
-  const [urlSelected, setUrlSelected] = useState('')
+
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -31,13 +31,11 @@ export const CarouselSlider = (props) => {
     );
   }
 
-  function selectPhoto(url) {
-    setUrlSelected(url)
-  }
 
   const {
     data = [],
     slideShow = 0,
+    slideShowThumb = 0,
     text = false,
     autoplaySlide = false,
     controls = false,
@@ -47,7 +45,8 @@ export const CarouselSlider = (props) => {
     containerWidth = '100%',
     comodo = null,
     style = {},
-    thumb = false
+    thumb = false,
+    positionSelect = 0
   } = props;
 
   const settings = {
@@ -94,69 +93,123 @@ export const CarouselSlider = (props) => {
     ]
   };
 
+  const [slider1, setSlider1] = useState(null)
+  const [slider2, setSlider2] = useState(null)
+
 
   return (
     <>
-      <Box sx={{ width: { xs: `100%`, xm: containerWidth, md: containerWidth, lg: containerWidth }}}>
-        <Slider {...settings}>
-          {data?.map((item) => (
-            <Box sx={{
-              position: 'relative',
-              alignItems:'center',
-            }} key={item.id} >
+      {thumb ?
+        <>
+          <Slider
+            asNavFor={slider2}
+            ref={(slider) => setSlider1(slider)}
+          >
+            {/* {data?.filter((item, index) => index == urlSelected).map((item, index) => ( */}
+            {data?.map((item, index) => (
               <Box sx={{
-                ...styles.imageCarouselLarge,
-                backgroundImage: `url('${item.url}')`,
-                width: { xs: `100%`, xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
-                height: { xs: '220px', xm: height ? height : '300px', md: height ? height : '300px', lg: height ? height : '300px' },
-                // marginLeft: { xs: `15%`, xm: `0px`, md: `0px`, lg: `0px` }
-                marginLeft: thumb && '25%'
-              }} />
-              {text ?
-                <Text title style={{
-                  position: 'absolute',
-                  backgroundColor: '#0f0f0f',
-                  opacity: 0.7,
-                  width: '50%',
-                  top: '50%',
-                  left: '50%',
-                  textWeight: 'bold',
-                  transform: 'translate(-50%, -50%)',
-                  color: '#fff',
-                  textAlign: 'center',
-                }}>{item.partHouse}</Text>
-                : ''}
-            </Box>
-          ))
-          }
-        </Slider>
-        <Box sx={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center' }}>
-          {thumb ?
-            data?.map((item) => (
+                position: 'relative',
+                alignItems: 'center',
+              }} key={index} >
+                <Box sx={{
+                  ...styles.imageCarouselLarge,
+                  backgroundImage: `url('${item?.url}')`,
+                  width: { xs: `90%`, xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
+                  height: { xs: '300px', xm: height ? height : '300px', md: height ? height : '300px', lg: height ? height : '300px' },
+                  // marginLeft: { xs: `15%`, xm: `0px`, md: `0px`, lg: `0px` }
+                  // marginLeft: thumb && '25%'
+                  margin: 'auto'
+                }} />
+                {text ?
+                  <Text title style={{
+                    position: 'absolute',
+                    backgroundColor: '#0f0f0f',
+                    opacity: 0.7,
+                    width: '50%',
+                    top: '50%',
+                    left: '50%',
+                    textWeight: 'bold',
+                    transform: 'translate(-50%, -50%)',
+                    color: '#fff',
+                    textAlign: 'center',
+                  }}>{item?.partHouse}</Text>
+                  : ''}
+              </Box>
+            ))
+            }
+          </Slider>
+          {data.length > 1 ? (
+            <Slider
+              asNavFor={slider1}
+              focusOnSelect={true}
+              ref={(slider) => setSlider2(slider)}
+              slidesToShow={slideShowThumb}
+              swipeToSlide={true}
+              controls={false}
+              arrows={false}
+            >
+              {
+                data?.map((item) => (
+                  <Box sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    width: '90%',
+                    flexDirection: 'row',
+                    overflow: 'hidden',
+                    justifyContent: { xs: `center`, xm: 'space-between', md: 'space-between', lg: 'space-between' },
+                    // position: 'absolute'
+                    marginTop: 2
+                  }} key={item?.id} >
+                    <Box sx={{
+                      ...styles.imageCarouselLarge,
+                      backgroundImage: `url('${item?.url}')`,
+                      width: { xs: `100px`, xm: `150px`, md: `100px`, lg: `100px` },
+                      height: { xs: '60px', xm: '60px', md: '60px', lg: '60px' },
+                      margin: '10px 3px'
+                      // marginLeft: { xs: `15%`, xm: `0px`, md: `0px`, lg: `0px` }
+                    }} />
+                  </Box>
+                ))
+              }
+            </Slider>
+          ) : null}
+        </>
+        :
+        <Box sx={{ width: { xs: `100%`, xm: containerWidth, md: containerWidth, lg: containerWidth } }}>
+          <Slider {...settings}>
+            {data?.map((item) => (
               <Box sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                width: '90%',
-                flexDirection: 'row',
-                overflow: 'hidden',
-                justifyContent: { xs: `center`, xm: 'space-between', md: 'space-between', lg: 'space-between' },
-                // position: 'absolute'
+                position: 'relative',
+                alignItems: 'center',
               }} key={item.id} >
                 <Box sx={{
                   ...styles.imageCarouselLarge,
                   backgroundImage: `url('${item.url}')`,
-                  width: { xs: `100%`, xm: `150px`, md: `150px`, lg: `150px` },
-                  height: { xs: '220px', xm: '60px', md: '60px', lg: '60px' },
-                  margin: '3px'
+                  width: { xs: `100%`, xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
+                  height: { xs: '220px', xm: height ? height : '300px', md: height ? height : '300px', lg: height ? height : '300px' },
                   // marginLeft: { xs: `15%`, xm: `0px`, md: `0px`, lg: `0px` }
-                }}
-
-                  onClick={() => selectPhoto(item.url)} />
+                  marginLeft: thumb && '25%'
+                }} />
+                {text ?
+                  <Text title style={{
+                    position: 'absolute',
+                    backgroundColor: '#0f0f0f',
+                    opacity: 0.7,
+                    width: '50%',
+                    top: '50%',
+                    left: '50%',
+                    textWeight: 'bold',
+                    transform: 'translate(-50%, -50%)',
+                    color: '#fff',
+                    textAlign: 'center',
+                  }}>{item.partHouse}</Text>
+                  : ''}
               </Box>
             ))
-            : ''}
-        </Box>
-      </Box >
+            }
+          </Slider>
+        </Box >
+      }
     </>
   );
 }
