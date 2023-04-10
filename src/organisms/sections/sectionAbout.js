@@ -95,7 +95,7 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 10,
-        left: 01,
+        left: 0,
     },
 
     imageSobre: {
