@@ -5,10 +5,10 @@ import { Footer } from '../organisms/layout/footer';
 import '../styles/globals.css'
 
 const menuItems = [
-   { to: '/home/HomePage', text: 'HOME' },
-   { to: '/ambients/ambient', text: 'AMBIENTES' },
-   { to: '/product/products', text: 'PRODUTOS' },
-   { to: '/', text: 'CONTATO' },
+   { to: '/home/HomePage', text: 'HOME', icon: 'home_icon'},
+   { to: '/ambients/ambient', text: 'AMBIENTES', icon: 'ambients_icon' },
+   { to: '/product/products', text: 'PRODUTOS', icon: 'produtos_icon' },
+   { to: '/contact/contacts', text: 'CONTATO', icon: 'tel-icon' },
 ];
 
 function App({ Component, pageProps }) {

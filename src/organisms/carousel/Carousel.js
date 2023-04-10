@@ -187,8 +187,8 @@ export const CarouselSlider = (props) => {
                   backgroundImage: `url('${item.url}')`,
                   width: { xs: `100%`, xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
                   height: { xs: '220px', xm: height ? height : '300px', md: height ? height : '300px', lg: height ? height : '300px' },
-                  // marginLeft: { xs: `15%`, xm: `0px`, md: `0px`, lg: `0px` }
-                  marginLeft: thumb && '25%'
+                  marginLeft: { xs: `0%`, xm: `0px`, md: `0px`, lg: `15px` },
+                  // marginLeft: thumb && '25%'
                 }} />
                 {text ?
                   <Text title style={{
