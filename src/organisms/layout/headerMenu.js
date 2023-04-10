@@ -31,7 +31,7 @@ export const HeaderMenu = ({ menuItems = [] }) => {
                      "&:hover": {
                         cursor: 'pointer', opacity: 0.8
                      }
-                  }} onClick={() => router.push('/home/Home')} />
+                  }} onClick={() => router.push('/home/homepage')} />
                   < Box sx={{ display: 'flex', width: '35%', justifyContent: 'center' }}>
                      {menuItems.map((item, index) =>
                         <MenuItem

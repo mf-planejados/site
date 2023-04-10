@@ -1,18 +1,27 @@
+import { useEffect } from 'react';
 import { Box } from '../atoms'
-import { AppProvider } from '../context/AppContext'
+import { AppProvider, useAppContext } from '../context/AppContext'
 import { Colors, HeaderMenu } from '../organisms'
 import { Footer } from '../organisms/layout/footer';
 import '../styles/globals.css'
+import { useRouter } from 'next/router';
 
 const menuItems = [
-   { to: '/home/HomePage', text: 'HOME', icon: 'home_icon'},
+   { to: '/home/homepage', text: 'HOME', icon: 'home_icon' },
    { to: '/ambients/ambient', text: 'AMBIENTES', icon: 'ambients_icon' },
    { to: '/product/products', text: 'PRODUTOS', icon: 'produtos_icon' },
    { to: '/contact/contacts', text: 'CONTATO', icon: 'tel-icon' },
 ];
 
 function App({ Component, pageProps }) {
-  
+
+   const router = useRouter()
+   const { setLoading } = useAppContext()
+
+   useEffect(() => {
+      router.push('/home/homepage')
+   }, [])
+
    return (
       <AppProvider>
          <Box sx={styles.bodyContainer}>
