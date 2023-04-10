@@ -105,9 +105,9 @@ const MenuItem = (props) => {
       <Link href={to} onClick={onClick}>
          <Box sx={{
             display: 'flex',
-            padding: `20px 12px`,
+            padding: `20px 20px`,
             justifyContent: 'center',
-            width: '60%',
+            width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' },
             textAlign: 'center',
             color: currentPage ? '#f0f0f0' : Colors.paleDarkBlue,
             ...(currentPage ?
@@ -115,14 +115,14 @@ const MenuItem = (props) => {
                :
                {
                   "&:hover": {
-                     borderBottom: `1px solid ${Colors.darkRed}`,
+                     borderBottom: { xs: `none`, xm: `0.5px solid ${Colors.darkRed}`, md: `0.5px solid ${Colors.darkRed}`, lg: `0.5px solid ${Colors.darkRed}` },
                      color: Colors.darkRed,
                      fontWeight: 'bold',
                   }
                }),
          }}>
-            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 2, }}>
-               <Box sx={{ ...styles.icon, backgroundImage: `url(/icons/${icon}${currentPage ? '_light' : ''}.png)` }} />
+            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 2, display: 'flex',}}>
+               <Box sx={{ ...styles.icon, backgroundImage: `url(/icons/${icon}${currentPage ? '_light' : ''}.png)`, marginRight: '5px', marginBottom: '5px' }} />
                <Text small style={{
                   color: 'inherit', width: 80,
                   "&:hover": {
@@ -228,8 +228,8 @@ const styles = {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      minHeight: '100vh',
-      backgroundColor: '#f9f9f9',
+      height: '100%',
+      backgroundColor: '#fff',
       borderRight: `1px solid #00000010`,
       padding: `40px 20px`,
       gap: 4,

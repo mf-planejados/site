@@ -77,7 +77,6 @@ export const SectionAbout = (props) => {
                             justifyContent: 'center',
                             alignItems: 'center',
                             width: '60%',
-                            height: '400px',
                             gap: 3,
                         }}>
                            <Card data={dataSocios}/>
