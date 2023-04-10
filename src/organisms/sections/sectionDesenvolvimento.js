@@ -42,7 +42,7 @@ export const SectionDevelopment = () => {
         <>
             <Box sx={styles.container}>
                 <Box sx={{ flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Box sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
+                    <Box sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 3}}>
                         <Box >
                             <Text title bold style={styles.title}>Etapas de desenvolvimento do seu sonho!</Text>
                         </Box>

@@ -76,7 +76,7 @@ export const SectionAbout = (props) => {
                             flexDirection: 'row',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            width: '60%',
+                            width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' },
                             gap: 3,
                         }}>
                            <Card data={dataSocios}/>

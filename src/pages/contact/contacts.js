@@ -29,7 +29,7 @@ export default function Contacts() {
     return (
         <>
             <Box>
-                <Box sx={{ height: widthLarge ? 800 : 'auto', padding: 5}}>
+                <Box sx={{ height: widthLarge ? 800 : 'auto', padding: { xs: 0, xm: 5, md: 5, lg: 5 }}}>
                     <Box sx={{ ...styles.imageHeader, padding: { xs: 2, xm: 5, md: 5, lg: 5 } }}>
                         <ContentContainer center style={{ width: { xs: '100%', xm: '50%', md: '50%', lg: '50%' }, height: '100%', backgroundColor: 'rgba(0,0,0,0.5)' }}>
                             <Text title style={{ color: '#fff', marginTop: 30, textAlign: 'center' }}>CONTATO/ORÇAMENTO</Text>
