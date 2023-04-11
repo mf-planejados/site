@@ -42,13 +42,29 @@ const comodos = [
 export default function Portifolio() {
 
    const [data, setData] = useState([])
-   
+
    useEffect(() => {
       if (dataGalery == '') {
          ambientData()
       }
       handleReload()
    }, [data])
+
+   const ambientData = async () => {
+      try {
+         setLoading(true)
+         const response = await getImages()
+         const {data = []} = response
+         console.log(data)
+         setData(data)
+         return
+      } catch (error) {
+         alert.error('Tivemos um problema ao fazer upload do arquivo.');
+         return null
+      } finally {
+         setLoading(false)
+      }
+   }
 
    const [comodoSelected, setComodoSelected] = useState('')
    const [dataGalery, setDataGalery] = useState(data)
@@ -61,7 +77,6 @@ export default function Portifolio() {
 
    const handleReload = () => {
       const dataImg = comodoSelected ? data?.filter((item) => item.category == comodoSelected.name) : data
-      console.log('dados imagem: ', dataImg)
       setDataGalery(dataImg)
       setTimeout(() => {
          setLoading(false)
@@ -81,20 +96,7 @@ export default function Portifolio() {
    const widthCarousel = useMediaQuery('(min-width:1536px)')
    const widthMobile = useMediaQuery('(max-width:600px)')
 
-   const ambientData = async () => {
-      try {
-         setLoading(true)
-         const response = await getImages()
-         const { data } = response
-         setData(data)
-         return
-      } catch (error) {
-         alert.error('Tivemos um problema ao fazer upload do arquivo.');
-         return null
-      } finally {
-         setLoading(false)
-      }
-   }
+
 
    return (
       <Box sx={styles.container}>
