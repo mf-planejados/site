@@ -4,6 +4,7 @@ import { CarouselSlider, Colors, DropList, } from "../../organisms"
 import { useAppContext } from "../../context/AppContext"
 import { Backdrop, useMediaQuery } from "@mui/material"
 import { Footer } from "../../organisms/layout/footer"
+import { getImages } from "../../validators/api-requests"
 
 const comodos = [
    {
@@ -38,131 +39,61 @@ const comodos = [
    },
 ]
 
-const data = [
-   {
-      id: '01',
-      url: '/img/Sala 1.1.jpeg',
-      name: 'Sala',
-   },
-   {
-      id: '02',
-      url: '/img/Sala 1.2.jpeg',
-      name: 'Sala',
-   },
-   {
-      id: '03',
-      url: '/img/Sala 1.3.jpeg',
-      name: 'Sala',
-   },
-   {
-      id: '04',
-      url: '/img/Sala 2.1.jpeg',
-      name: 'Sala',
-   },
-   {
-      id: '05',
-      url: '/img/Sala 1.5.jpeg',
-      name: 'Sala',
-   },
-   {
-      id: '06',
-      url: '/img/Banheiro 1.1.jpeg',
-      name: 'Banheiro',
-   },
-   {
-      id: '07',
-      url: '/img/Banheiro 1.2.jpeg',
-      name: 'Banheiro',
-   },
-   {
-      id: '08',
-      url: '/img/Banheiro 1.3.jpeg',
-      name: 'Banheiro',
-   },
-   {
-      id: '09',
-      url: '/img/Banheiro 1.4.jpeg',
-      name: 'Banheiro',
-   },
-   {
-      id: '10',
-      url: '/img/Cozinha 1.1.jpeg',
-      name: 'Cozinha',
-   },
-
-   {
-      id: '11',
-      url: '/img/Cozinha 1.2.jpeg',
-      name: 'Cozinha',
-   },
-
-   {
-      id: '12',
-      url: '/img/Cozinha 1.3.jpeg',
-      name: 'Cozinha',
-   },
-   {
-      id: '13',
-      url: '/img/Cozinha 1.4.jpeg',
-      name: 'Cozinha',
-   },
-
-   {
-      id: '14',
-      url: '/img/Sala 1.6.jpeg',
-      name: 'Espaço Externo',
-   },
-   {
-      id: '15',
-      url: '/img/Sala 1.7.jpeg',
-      name: 'Espaço Externo',
-   },
-   {
-      id: '16',
-      url: '/img/Sala 1.8.jpeg',
-      name: 'Espaço Externo',
-   },
-   {
-      id: '17',
-      url: '/img/Sala 1.9.jpeg',
-      name: 'Espaço Externo',
-   },
-]
-
 export default function Portifolio() {
 
+   const [data, setData] = useState([])
+   
+   useEffect(() => {
+      if (dataGalery == '') {
+         ambientData()
+      }
+      handleReload()
+   }, [data])
+
    const [comodoSelected, setComodoSelected] = useState('')
-   const [dataGalery, setDataGalery] = useState([])
+   const [dataGalery, setDataGalery] = useState(data)
    const [showCarousel, setShowCarousel] = useState(false)
-
-   const [imagemSelecionada, setImagemSelecionada] = useState(data[0]);
-   const posicaoImagemSelecionada = data.indexOf(imagemSelecionada)
-   const imagensOrdenadas = [
-      data[posicaoImagemSelecionada],
-      ...data.slice(0, posicaoImagemSelecionada),
-      ...data.slice(posicaoImagemSelecionada + 1),
-   ]
-
-   const { setLoading } = useAppContext()
-   const widthCarousel = useMediaQuery('(min-width:1536px)')
-   const widthMobile = useMediaQuery('(max-width:600px)')
-
-   function selectedUrl(index) {
-      setUrlSelect(index)
-   }
 
    useEffect(() => {
       setLoading(true)
       handleReload()
-
    }, [comodoSelected])
 
    const handleReload = () => {
-      const dataImg = comodoSelected ? data?.filter((item) => item.name === comodoSelected.name) : data
+      const dataImg = comodoSelected ? data?.filter((item) => item.category == comodoSelected.name) : data
+      console.log('dados imagem: ', dataImg)
       setDataGalery(dataImg)
       setTimeout(() => {
          setLoading(false)
       }, 500)
+   }
+
+   const [imagemSelecionada, setImagemSelecionada] = useState(dataGalery[0]);
+
+   const posicaoImagemSelecionada = dataGalery?.indexOf(imagemSelecionada)
+   const imagensOrdenadas = [
+      dataGalery[posicaoImagemSelecionada],
+      ...dataGalery?.slice(0, posicaoImagemSelecionada),
+      ...dataGalery?.slice(posicaoImagemSelecionada + 1),
+   ]
+
+   const { setLoading, alert } = useAppContext()
+   const widthCarousel = useMediaQuery('(min-width:1536px)')
+   const widthMobile = useMediaQuery('(max-width:600px)')
+
+   const ambientData = async () => {
+      try {
+         setLoading(true)
+         const response = await getImages()
+         const { data } = response
+         setData(data)
+         return
+      } catch (error) {
+         alert.error('Tivemos um problema ao fazer upload do arquivo.');
+         return null
+      } finally {
+         setLoading(false)
+      }
    }
 
    return (
@@ -172,10 +103,10 @@ export default function Portifolio() {
                width: { xs: '100%', xm: '80%', md: '70%', lg: '70%' },
                marginTop: { xs: 15, xm: 7, md: 7, lg: 7 },
                marginRight: { xs: '0%', xm: '20%', md: '20%', lg: '20%' },
-              
+
                borderBottom: `1px solid ${Colors.darkRed}`
             }}>
-               <Text bold style={{ textAlign: 'center', fontSize: 30, marginBottom: 20, color: Colors.darkRed}}>Veja alguns de nossos projetos entregues</Text>
+               <Text bold style={{ textAlign: 'center', fontSize: 30, marginBottom: 20, color: Colors.darkRed }}>Veja alguns de nossos projetos entregues</Text>
             </Box>
             <ContentContainer style={{ position: { xs: 'fixed', xm: 'fixed', md: 'fixed', lg: 'fixed' }, right: 0, width: { xs: '100%', xm: '25%', md: '25%', lg: '25%' }, zIndex: 999999, marginTop: { xs: -2, xm: 1.5, md: 1.5, lg: 1.5 } }}>
                <DropList

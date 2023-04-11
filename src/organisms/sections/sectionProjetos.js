@@ -3,6 +3,7 @@ import { Box, Button, ContentContainer, Text } from "../../atoms";
 import { CarouselSlider } from "../index";
 import { Colors } from "../layout/Colors";
 import { useMediaQuery } from "@mui/material";
+import { useRouter } from "next/router";
 
 const image = [
     {
@@ -35,6 +36,7 @@ const image = [
 
 export const SectionProjects = () => {
 
+    const router = useRouter()
     const widthCarousel = useMediaQuery('(min-width:1536px)')
 
     return (
@@ -54,7 +56,9 @@ export const SectionProjects = () => {
                                 Contamos com uma enorme variedade de modelos,
                                 e orçamento feito presencialmente para melhor entendimento do seu sonho.</Text>
                             <Box sx={{ padding: '0px 40px 0px 40px', alignItems: 'center', justifyContent: 'center', }}>
-                                <Button bold text='Conheça nossos projetos' style={{ alignItems: 'center', justifyContent: 'center', marginTop: 2 }} />
+                                <Button bold text='Conheça nossos projetos' 
+                                style={{ alignItems: 'center', justifyContent: 'center', marginTop: 2 }}
+                                onClick={() => router.push('/ambients/ambient')} />
                             </Box>
                         </Box>
                     </Box>

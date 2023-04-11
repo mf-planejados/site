@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Box, Button, Text } from "../../atoms";
 import { Colors } from "../layout/Colors";
+import { useRouter } from "next/router";
 
 const DevelopmentProcess = [
     {
@@ -37,6 +38,8 @@ const DevelopmentProcess = [
 ]
 
 export const SectionDevelopment = () => {
+
+    const router = useRouter()
 
     return (
         <>
@@ -100,7 +103,8 @@ export const SectionDevelopment = () => {
                             </>
                         ))}
                     </Box>
-                    <Button text='Solicite seu orçamento' style={{ width: '200px', marginTop: '30px' }} />
+                    <Button text='Solicite seu orçamento' style={{ width: '200px', marginTop: '30px' }}
+                    onClick={() => router.push('/contact/contacts')} />
                 </Box>
             </Box>
         </>
