@@ -59,7 +59,7 @@ export const HeaderMenu = ({ menuItems = [] }) => {
                      "&:hover": {
                         cursor: 'pointer', opacity: 0.8
                      }
-                  }} onClick={() => router.push('/')} />
+                  }} onClick={() => router.push('/home/homepage')} />
                   <Hamburger toggled={showMenuMobile} toggle={setShowMenuMobile} duration={0.8} />
                </Box>
                {showMenuMobile ?
@@ -76,9 +76,7 @@ export const HeaderMenu = ({ menuItems = [] }) => {
                            "&:hover": {
                               cursor: 'pointer', opacity: 0.8
                            }
-                        }} onClick={() => {
-                           router.push('/')
-                        }} />
+                        }} onClick={() => router.push('/home/homepage')} />
                         < Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                            {menuItems.map((item, index) =>
                               <MenuItem

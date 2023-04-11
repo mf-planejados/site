@@ -12,8 +12,6 @@ export const DropList = (props) => {
       vertical = false
    } = props;
 
-   console.log(props)
-
    const [open, setOpen] = useState(false)
 
    return (
