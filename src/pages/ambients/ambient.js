@@ -41,22 +41,19 @@ const comodos = [
 
 export default function Portifolio() {
 
-   const [data, setData] = useState([])
-
-   useEffect(() => {
-      if (dataGalery == '') {
-         ambientData()
-      }
-      handleReload()
-   }, [data])
+   const { setLoading, alert } = useAppContext()
+   const [comodoSelected, setComodoSelected] = useState('')
+   const [dataGalery, setDataGalery] = useState([])
+   const [showCarousel, setShowCarousel] = useState(false)
+   const [imagemSelecionada, setImagemSelecionada] = useState(dataGalery[0]);
 
    const ambientData = async () => {
       try {
          setLoading(true)
          const response = await getImages()
-         const {data = []} = response
-         console.log(data)
-         setData(data)
+         const { data } = response
+         const dataImg = comodoSelected ? data?.filter((item) => item.category == comodoSelected.name) : data
+         setDataGalery(dataImg)
          return
       } catch (error) {
          alert.error('Tivemos um problema ao fazer upload do arquivo.');
@@ -66,24 +63,10 @@ export default function Portifolio() {
       }
    }
 
-   const [comodoSelected, setComodoSelected] = useState('')
-   const [dataGalery, setDataGalery] = useState(data)
-   const [showCarousel, setShowCarousel] = useState(false)
-
    useEffect(() => {
-      setLoading(true)
-      handleReload()
+      ambientData()
    }, [comodoSelected])
 
-   const handleReload = () => {
-      const dataImg = comodoSelected ? data?.filter((item) => item.category == comodoSelected.name) : data
-      setDataGalery(dataImg)
-      setTimeout(() => {
-         setLoading(false)
-      }, 500)
-   }
-
-   const [imagemSelecionada, setImagemSelecionada] = useState(dataGalery[0]);
 
    const posicaoImagemSelecionada = dataGalery?.indexOf(imagemSelecionada)
    const imagensOrdenadas = [
@@ -92,7 +75,6 @@ export default function Portifolio() {
       ...dataGalery?.slice(posicaoImagemSelecionada + 1),
    ]
 
-   const { setLoading, alert } = useAppContext()
    const widthCarousel = useMediaQuery('(min-width:1536px)')
    const widthMobile = useMediaQuery('(max-width:600px)')
 
@@ -182,15 +164,6 @@ export default function Portifolio() {
                   controls thumb
                   positionSelect={posicaoImagemSelecionada}
                />
-               {/* <CarouselSlider
-                  containerWidth={'100%'}
-                  slider1={dataGalery}
-                  slider2={dataGalery}
-                  showArrows
-                  // slideShow={1}
-                  text={true}
-                  controls
-                  thumb /> */}
             </Box>
          </Backdrop>
          <Footer />
