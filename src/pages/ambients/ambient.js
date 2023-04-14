@@ -43,6 +43,7 @@ export default function Portifolio() {
 
    const { setLoading, alert } = useAppContext()
    const [comodoSelected, setComodoSelected] = useState('')
+   const [section, setSection] = useState('Galeria')
    const [dataGalery, setDataGalery] = useState([])
    const [showCarousel, setShowCarousel] = useState(false)
    const [imagemSelecionada, setImagemSelecionada] = useState(dataGalery[0]);
@@ -52,7 +53,8 @@ export default function Portifolio() {
          setLoading(true)
          const response = await getImages()
          const { data } = response
-         const dataImg = comodoSelected ? data?.filter((item) => item.category == comodoSelected.name) : data
+         const filterImages = data?.filter(item => item.section === section) 
+         const dataImg = comodoSelected ? filterImages?.filter((item) => item.category == comodoSelected.name) : filterImages
          setDataGalery(dataImg)
          return
       } catch (error) {
@@ -78,6 +80,8 @@ export default function Portifolio() {
    const widthCarousel = useMediaQuery('(min-width:1536px)')
    const widthMobile = useMediaQuery('(max-width:600px)')
 
+   const qntImages = dataGalery.length
+
 
 
    return (
@@ -93,6 +97,7 @@ export default function Portifolio() {
                <Text bold style={{ textAlign: 'center', fontSize: 30, marginBottom: 20, color: Colors.darkRed }}>Veja alguns de nossos projetos entregues</Text>
             </Box>
             <ContentContainer style={{ position: { xs: 'fixed', xm: 'fixed', md: 'fixed', lg: 'fixed' }, right: 0, width: { xs: '100%', xm: '25%', md: '25%', lg: '25%' }, zIndex: 999999, marginTop: { xs: -2, xm: 1.5, md: 1.5, lg: 1.5 } }}>
+              
                <DropList
                   data={comodos}
                   placeholder='Selecione um cômodo'
@@ -100,6 +105,7 @@ export default function Portifolio() {
                   selectedOption={comodoSelected}
                   onSelect={(value) => setComodoSelected(value)}
                   maxHeight={215}
+                  filterOpitions
                />
             </ContentContainer>
          </Box>
@@ -156,7 +162,7 @@ export default function Portifolio() {
                <CarouselSlider containerWidth={'100%'}
                   data={imagensOrdenadas}
                   showArrows
-                  slideShowThumb={widthCarousel ? 12 : widthMobile ? 4 : 8}
+                  slideShowThumb={widthCarousel ? qntImages >= 12 ? 12 : qntImages : widthMobile ? qntImages >= 4 ? 4 : qntImages : qntImages >= 8 ? 8 : qntImages }
                   slideShow={1}
                   text={true}
                   width={widthCarousel ? 750 : 600}

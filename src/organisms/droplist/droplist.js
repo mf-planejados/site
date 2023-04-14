@@ -9,7 +9,8 @@ export const DropList = (props) => {
       selectedOption,
       onSelect = () => { },
       placeholder = 'placeholder',
-      vertical = false
+      vertical = false,
+      filterOpitions = false,
    } = props;
 
    const [open, setOpen] = useState(false)
@@ -52,6 +53,14 @@ export const DropList = (props) => {
                   }}>
                      <Text style={{ ...(!selectedOption?.[fieldToDisplay] && { color: '#bbb' }) }}>{selectedOption?.[fieldToDisplay] || placeholder}</Text>
                   </Box>
+                  {selectedOption && filterOpitions ?
+                     <Box sx={{ ...styles.filterContainer }} onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        onSelect('')
+                        setOpen(false)
+                     }} />
+                     : ''}
                   <Box sx={{ ...styles.arrowContainer, ...(!open && { transform: 'rotate(180deg)' }) }} />
                </Box>
                {open ?
@@ -96,6 +105,15 @@ const styles = {
       backgroundPosition: 'center',
       width: 20,
       height: 20,
+   },
+   filterContainer: {
+      backgroundImage: `url('/icons/clean_filter_icon.png')`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      width: 15,
+      height: 15,
+      margin: '3px 10px 0px 5px'
    },
    dropListOptionItem: {
       padding: `10px 15px`,

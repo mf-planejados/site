@@ -1,31 +1,28 @@
+import { useEffect, useState } from "react";
 import { Box, Text, ContentContainer } from "../../atoms";
+import { getImages } from "../../validators/api-requests";
 import { Card } from "../card/card";
 import { Colors } from "../layout/Colors";
 
-const dataSocios = [
-    {
-        name: 'Vicente Fonseca',
-        title: 'Fundador',
-        url: '/img/Socio 1.jpeg',
-    },
-    {
-        name: 'Eder Moreira',
-        title: 'Sócio',
-        url: '/img/Socio 1.jpeg',
-    },
-    {
-        name: 'Andre Marques',
-        title: 'Sócio',
-        url: '/img/Socio 2.jpg',
-    },
-    {
-        name: 'Lourival de Souza',
-        title: 'Sócio',
-        url: '/img/Socio 3.jpg',
-    },
-]
-
 export const SectionAbout = (props) => {
+
+    const [dataSocios, setDataSocios] = useState()
+    const [section, setSection] = useState('Socios')
+
+    const handleImage = async () => {
+        try {
+            const response = await getImages()
+            const { data } = response
+            const filterImages = data?.filter(item => item.section === section)
+            setDataSocios(filterImages)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        handleImage()
+    }, [])
 
     return (
         <>
@@ -79,7 +76,7 @@ export const SectionAbout = (props) => {
                             width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' },
                             gap: 3,
                         }}>
-                           <Card data={dataSocios}/>
+                            <Card data={dataSocios} />
                         </Box>
                     </Box>
                 </ContentContainer>
