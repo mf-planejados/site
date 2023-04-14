@@ -49,6 +49,7 @@ export const CarouselSlider = (props) => {
     positionSelect = 0
   } = props;
 
+  console.log(data)
   const settings = {
     dots: true,
     fade: thumb ? true : false,
@@ -156,7 +157,7 @@ export const CarouselSlider = (props) => {
                     width: '90%',
                     flexDirection: 'row',
                     overflow: 'hidden',
-                    justifyContent: { xs: `center`, xm: 'space-between', md: 'space-between', lg: 'space-between' },
+                    justifyContent: { xs: `center`, sm: 'space-between', md: 'space-between', lg: 'space-between' },
                     // position: 'absolute'
                     marginTop: 2
                   }} key={item?.id} >
@@ -165,7 +166,7 @@ export const CarouselSlider = (props) => {
                       backgroundImage: `url('${item?.url}')`,
                       width: { xs: `100px`, xm: `150px`, md: `100px`, lg: `100px` },
                       height: { xs: '60px', xm: '60px', md: '60px', lg: '60px' },
-                      margin: '10px 3px'
+                      margin: '10px 3px',
                       // marginLeft: { xs: `15%`, xm: `0px`, md: `0px`, lg: `0px` }
                     }} />
                   </Box>
@@ -202,7 +203,7 @@ export const CarouselSlider = (props) => {
                     transform: 'translate(-50%, -50%)',
                     color: '#fff',
                     textAlign: 'center',
-                  }}>{item.partHouse}</Text>
+                  }}>{item.category}</Text>
                   : ''}
               </Box>
             ))

@@ -55,7 +55,7 @@ export const Card = (props) => {
                                     textAlign: 'center',
                                     opacity: 1,
                                     transition: 'opacity 0.5s ease',
-                                }}>{item?.name}</Text>
+                                }}>{item?.namePerfil}</Text>
                             : 
                             <Text title style={{
                                 position: 'absolute',
@@ -70,8 +70,8 @@ export const Card = (props) => {
                                 textAlign: 'center',
                                 opacity: 0,
                                 transition: 'opacity 2s ease',
-                            }}>{item?.name}</Text>}
-                            <Text large style={{ color: Colors.darkRed, borderBottom: `1px solid ${Colors.darkRed}`, width: 80, textAlign: 'center', padding: '0px 0px 10px 0px' }}>{item.title}</Text>
+                            }}>{item?.namePerfil}</Text>}
+                            <Text large style={{ color: Colors.darkRed, borderBottom: `1px solid ${Colors.darkRed}`, width: 80, textAlign: 'center', padding: '0px 0px 10px 0px' }}>{item.level}</Text>
                         </ContentContainer>
                     ))}
                 </Box>
