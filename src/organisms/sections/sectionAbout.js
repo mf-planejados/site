@@ -6,22 +6,14 @@ import { Colors } from "../layout/Colors";
 
 export const SectionAbout = (props) => {
 
+    const { data = [] } = props
+
     const [dataSocios, setDataSocios] = useState()
     const [section, setSection] = useState('Socios')
 
-    const handleImage = async () => {
-        try {
-            const response = await getImages()
-            const { data } = response
-            const filterImages = data?.filter(item => item.section === section)
-            setDataSocios(filterImages)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     useEffect(() => {
-        handleImage()
+        const filterImages = data?.filter(item => item.section === section)
+        setDataSocios(filterImages)
     }, [])
 
     return (

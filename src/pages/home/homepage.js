@@ -1,9 +1,13 @@
 import { Box, ContentContainer, Text } from "../../atoms"
+import { useAppContext } from "../../context/AppContext"
 import { Colors, Carousel } from "../../organisms"
 import { Footer } from "../../organisms/layout/footer"
 import { SectionAbout, SectionDevelopment, SectionProjects } from "../../organisms/sections/index"
 
 export default function HomePage() {
+
+   const { dataImages } = useAppContext()
+
    return (
       <Box fullWidth sx={styles.container}>
          <Box fullWidth sx={styles.containerSection}>
@@ -60,28 +64,23 @@ export default function HomePage() {
          <Box sx={{
             height: '300px',
          }}>
-            <Carousel />
+            <Carousel data={dataImages}/>
          </Box>
 
-         {/* <Box sx={{
-            height: { xs: `auto`, xm: '600px', md: '800px', lg: '800px' },
-            // marginBottom: { xs: `100px`, xm: '0px', md: '0px', lg: '0px' }
-         }}> */}
-            <SectionAbout />
-         {/* </Box> */}
+         <SectionAbout data={dataImages}/>
 
          <Box sx={{
             height: { xs: `auto`, xm: '600px', md: '600px', lg: '600px' },
             marginBottom: { xs: `100px`, xm: '0px', md: '0px', lg: '0px' }
          }}>
-            <SectionDevelopment />
+            <SectionDevelopment/>
          </Box>
 
          <Box sx={{
             height: 'auto',
             marginBottom: 10
          }}>
-            <SectionProjects />
+            <SectionProjects data={dataImages}/>
          </Box>
          <Footer />
       </Box>
