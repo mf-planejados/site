@@ -112,7 +112,7 @@ const styles = {
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center',
-      backgroundImage: `url('/header-image.jpeg')`,
+      backgroundImage: `url('https://mf-planejados.s3.us-east-1.amazonaws.com/a2799abb33672f85cc8cc68d357035db-home%2520page%2520marcenaria.jpeg')`,
       width: { xs: '300px', xm: '90%', md: '90%', lg: '90%' },
       height: { xs: '250px', xm: '90%', md: '90%', lg: '90%' }
    },
