@@ -7,27 +7,16 @@ import { useRouter } from "next/router";
 import { getImages } from "../../validators/api-requests";
 import { useEffect, useState } from "react";
 
-export const SectionProjects = () => {
+export const SectionProjects = (props) => {
 
+    const { data = [] } = props
     const [dataImage, setDataImage] = useState()
     const [section, setSection] = useState('Galeria')
 
-    const handleImage = async () => {
-        try {
-            const response = await getImages()
-            const { data } = response
-            const filterImages = data?.filter(item => item.section === section)
-            setDataImage(filterImages)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     useEffect(() => {
-        handleImage()
+        const filterImages = data?.filter(item => item.section === section)
+        setDataImage(filterImages)
     }, [])
-
-    console.log('image aqui - ',dataImage)
 
     const router = useRouter()
     const widthCarousel = useMediaQuery('(min-width:1536px)')

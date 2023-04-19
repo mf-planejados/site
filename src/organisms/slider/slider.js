@@ -43,26 +43,16 @@ import { getImages } from "../../validators/api-requests";
 
 // ]
 
-export const Carousel = () => {
+export const Carousel = (props) => {
+
+    const { data = [] } = props
 
     const [dataAmbients, setDataAmbients] = useState()
     const [section, setSection] = useState('Ambientes')
 
-    const handleImageAmbients = async () => {
-        try {
-            const response = await getImages()
-            const { data } = response
-            const filterImages = data?.filter(item => item.section === section)
-            setDataAmbients(filterImages)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    console.log('ambientes - ', dataAmbients)
-
     useEffect(() => {
-        handleImageAmbients()
+        const filterImages = data?.filter(item => item.section === section)
+        setDataAmbients(filterImages)
     }, [])
 
     const widthCarousel = useMediaQuery('(min-width:1536px)')
