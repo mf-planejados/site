@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { Box, ContentContainer, Text } from "../../atoms"
 import { useAppContext } from "../../context/AppContext"
 import { Colors, Carousel } from "../../organisms"
@@ -7,6 +8,11 @@ import { SectionAbout, SectionDevelopment, SectionProjects } from "../../organis
 export default function HomePage() {
 
    const { dataImages } = useAppContext()
+   const [data, setData] = useState([])
+
+   useEffect(() => {
+      setData(dataImages)
+   }, [])
 
    return (
       <Box fullWidth sx={styles.container}>
@@ -64,23 +70,23 @@ export default function HomePage() {
          <Box sx={{
             height: '300px',
          }}>
-            <Carousel data={dataImages}/>
+            <Carousel data={data} />
          </Box>
 
-         <SectionAbout data={dataImages}/>
+         <SectionAbout data={data} />
 
          <Box sx={{
             height: { xs: `auto`, xm: '600px', md: '600px', lg: '600px' },
             marginBottom: { xs: `100px`, xm: '0px', md: '0px', lg: '0px' }
          }}>
-            <SectionDevelopment/>
+            <SectionDevelopment />
          </Box>
 
          <Box sx={{
             height: 'auto',
             marginBottom: 10
          }}>
-            <SectionProjects data={dataImages}/>
+            <SectionProjects data={data} />
          </Box>
          <Footer />
       </Box>
