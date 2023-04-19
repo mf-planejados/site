@@ -67,10 +67,10 @@ export const SectionAbout = (props) => {
                             flexDirection: 'row',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' },
+                            width: { xs: `100%`, xm: '100%', md: '100%', lg: '100%' },
                             gap: 3,
                         }}>
-                            <Card data={dataSocios} />
+                            <Card data={dataSocios} height={260}/>
                         </Box>
                     </Box>
                 </ContentContainer>

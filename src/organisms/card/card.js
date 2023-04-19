@@ -23,7 +23,7 @@ export const Card = (props) => {
     return (
         <>
             <Box sx={styles.container}>
-                <Box sx={{ display: 'flex', flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, gap: 1 }}>
+                <Box sx={{ display: 'flex', flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, gap: 1, justifyContent: 'center' }}>
                     {data.map((item, index) => (
                         <ContentContainer center key={index} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', position: 'relative' }}>
                             <Box sx={{
