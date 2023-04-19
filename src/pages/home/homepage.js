@@ -8,11 +8,6 @@ import { SectionAbout, SectionDevelopment, SectionProjects } from "../../organis
 export default function HomePage() {
 
    const { dataImages } = useAppContext()
-   const [data, setData] = useState([])
-
-   useEffect(() => {
-      setData(dataImages)
-   }, [])
 
    return (
       <Box fullWidth sx={styles.container}>
@@ -70,10 +65,10 @@ export default function HomePage() {
          <Box sx={{
             height: '300px',
          }}>
-            <Carousel data={data} />
+            <Carousel data={dataImages} />
          </Box>
 
-         <SectionAbout data={data} />
+         <SectionAbout data={dataImages} />
 
          <Box sx={{
             height: { xs: `auto`, xm: '600px', md: '600px', lg: '600px' },
@@ -86,7 +81,7 @@ export default function HomePage() {
             height: 'auto',
             marginBottom: 10
          }}>
-            <SectionProjects data={data} />
+            <SectionProjects data={dataImages} />
          </Box>
          <Footer />
       </Box>

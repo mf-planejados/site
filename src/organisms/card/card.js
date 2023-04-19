@@ -28,7 +28,7 @@ export const Card = (props) => {
                         <ContentContainer center key={index} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', position: 'relative' }}>
                             <Box sx={{
                                 ...styles.imageCarouselLarge,
-                                backgroundImage: `url('${item?.url}')`,
+                                backgroundImage: `url('${item?.url || '/img/sem-imagem.jpg'}')`,
                                 width: { xs: `90%`, xm: width ? width : `220px`, md: width ? width : `220px`, lg: width ? width : `220px` },
                                 height: { xs: '300px', xm: height ? height : '200px', md: height ? height : '200px', lg: height ? height : '200px' },
                                 margin: 'auto',

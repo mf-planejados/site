@@ -12,9 +12,11 @@ export const SectionAbout = (props) => {
     const [section, setSection] = useState('Socios')
 
     useEffect(() => {
+        if (data) {
         const filterImages = data?.filter(item => item.section === section)
         setDataSocios(filterImages)
-    }, [])
+        }
+    }, [data])
 
     return (
         <>

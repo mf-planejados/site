@@ -14,9 +14,11 @@ export const SectionProjects = (props) => {
     const [section, setSection] = useState('Galeria')
 
     useEffect(() => {
+        if (data) {
         const filterImages = data?.filter(item => item.section === section)
         setDataImage(filterImages)
-    }, [])
+        }
+    }, [data])
 
     const router = useRouter()
     const widthCarousel = useMediaQuery('(min-width:1536px)')

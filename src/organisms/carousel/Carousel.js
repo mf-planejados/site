@@ -114,7 +114,7 @@ export const CarouselSlider = (props) => {
               }} key={index} >
                 <Box sx={{
                   ...styles.imageCarouselLarge,
-                  backgroundImage: `url('${item?.url}')`,
+                  backgroundImage: `url('${item?.url || '/img/sem-imagem.jpg'}')`,
                   width: { xs: `90%`, xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
                   height: { xs: '300px', xm: height ? height : '300px', md: height ? height : '300px', lg: height ? height : '300px' },
                   // marginLeft: { xs: `15%`, xm: `0px`, md: `0px`, lg: `0px` }

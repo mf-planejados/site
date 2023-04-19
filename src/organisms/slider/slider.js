@@ -4,45 +4,6 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { CarouselSlider } from "../carousel/Carousel";
 import { getImages } from "../../validators/api-requests";
 
-// const image = [
-//     {
-//         id: '01',
-//         url: '/comodos/sala.jpg',
-//         partHouse: 'Sala'
-//     },
-//     {
-//         id: '02',
-//         url: '/comodos/quarto.jpeg',
-//         partHouse: 'Quarto'
-//     },
-//     {
-//         id: '03',
-//         url: '/comodos/banheiro.jpg',
-//         partHouse: 'Banheiro'
-//     },
-//     {
-//         id: '04',
-//         url: '/comodos/cozinha.jpg',
-//         partHouse: 'Cozinha'
-//     },
-//     {
-//         id: '05',
-//         url: '/comodos/area-externa.jpg',
-//         partHouse: 'Espaço Externo'
-//     },
-//     {
-//         id: '05',
-//         url: '/comodos/area-externa.jpg',
-//         partHouse: 'Escritório'
-//     },
-//     {
-//         id: '05',
-//         url: '/comodos/area-externa.jpg',
-//         partHouse: 'Corporativo'
-//     },
-
-// ]
-
 export const Carousel = (props) => {
 
     const { data = [] } = props
@@ -51,9 +12,11 @@ export const Carousel = (props) => {
     const [section, setSection] = useState('Ambientes')
 
     useEffect(() => {
-        const filterImages = data?.filter(item => item.section === section)
-        setDataAmbients(filterImages)
-    }, [])
+        if (data) {
+            const filterImages = data?.filter(item => item.section === section)
+            setDataAmbients(filterImages)
+        }
+    }, [data])
 
     const widthCarousel = useMediaQuery('(min-width:1536px)')
     const qntImages = dataAmbients?.legth
