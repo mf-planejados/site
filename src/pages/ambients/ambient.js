@@ -49,16 +49,20 @@ export default function Portifolio() {
    const [imagemSelecionada, setImagemSelecionada] = useState(dataGalery[0]);
 
    const ambientData = async () => {
-      setLoading(true)
-      const filterImages = dataImages?.filter(item => item.section === section)
-      const dataImg = comodoSelected ? filterImages?.filter((item) => item.category == comodoSelected.name) : filterImages
-      setDataGalery(dataImg)
-      setLoading(false)
+
+
       return
    }
 
    useEffect(() => {
-      ambientData()
+      setLoading(true)
+      setTimeout(() => {
+         const filterImages = dataImages?.filter(item => item.section === section)
+         const dataImg = comodoSelected ? filterImages?.filter((item) => item.category == comodoSelected.name) : filterImages
+         setDataGalery(dataImg)
+         setLoading(false)
+      },
+         500)
    }, [comodoSelected])
 
 

@@ -21,11 +21,15 @@ export const AppProvider = ({ children }) => {
 
    const handleImageAmbients = async () => {
       try {
+         setLoading(true)
          const response = await getImages()
          const { data } = response
          setDataImages(data)
+         setLoading(false)
       } catch (error) {
          console.log(error)
+      } finally {
+         setLoading(false)
       }
    }
 

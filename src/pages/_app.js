@@ -7,20 +7,13 @@ import '../styles/globals.css'
 import { useRouter } from 'next/router';
 
 const menuItems = [
-   { to: '/home/homepage', text: 'HOME', icon: 'home_icon' },
+   { to: '/', text: 'HOME', icon: 'home_icon' },
    { to: '/ambients/ambient', text: 'AMBIENTES', icon: 'ambients_icon' },
    { to: '/product/products', text: 'PRODUTOS', icon: 'produtos_icon' },
    { to: '/contact/contacts', text: 'CONTATO', icon: 'tel-icon' },
 ];
 
 function App({ Component, pageProps }) {
-
-   const router = useRouter()
-   const { setLoading } = useAppContext()
-
-   useEffect(() => {
-      router.push('/home/homepage')
-   }, [])
 
    return (
       <AppProvider>

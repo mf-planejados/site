@@ -45,12 +45,12 @@ export const SectionDevelopment = () => {
         <>
             <Box sx={styles.container}>
                 <Box sx={{ flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Box sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 3}}>
+                    <Box sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: { xs: 7, xm: 2, md: 2, lg: 2 }}}>
                         <Box >
                             <Text title bold style={styles.title}>Etapas de desenvolvimento do seu sonho!</Text>
                         </Box>
                         <Box sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
-                            <Text style={styles.text}>Nossa empresa conta com um processo de desenvolvimento bem planejado, desde o atendimento até a entrega. Contamos com uma enorme variedade de modelos, e orçamento feito presencialmente para melhor entendimento do seu sonho.</Text>
+                            <Text style={styles.text}>Nossa empresa conta com um processo de desenvolvimento bem planejado, desde o atendimento até a entrega. Contamos com uma enorme variedade de modelos, e orçamentos realizados presencialmente para melhor entendimento do seu sonho.</Text>
                         </Box>
                     </Box>
 
@@ -103,7 +103,7 @@ export const SectionDevelopment = () => {
                             </>
                         ))}
                     </Box>
-                    <Button text='Solicite seu orçamento' style={{ width: '200px', marginTop: '30px' }}
+                    <Button text='Solicite seu orçamento' style={{ width: '200px', marginTop: { xs: `none`, xm: '30px', md: '30px', lg: '30px' }}}
                     onClick={() => router.push('/contact/contacts')} />
                 </Box>
             </Box>

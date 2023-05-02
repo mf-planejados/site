@@ -31,7 +31,7 @@ export const HeaderMenu = ({ menuItems = [] }) => {
                      "&:hover": {
                         cursor: 'pointer', opacity: 0.8
                      }
-                  }} onClick={() => router.push('/home/homepage')} />
+                  }} onClick={() => router.push('/')} />
                   < Box sx={{ display: 'flex', width: '35%', justifyContent: 'center' }}>
                      {menuItems.map((item, index) =>
                         <MenuItem
@@ -103,7 +103,7 @@ const MenuItem = (props) => {
       <Link href={to} onClick={onClick}>
          <Box sx={{
             display: 'flex',
-            padding: `20px 20px`,
+            padding: `35px 20px`,
             justifyContent: 'center',
             width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' },
             textAlign: 'center',
@@ -119,7 +119,7 @@ const MenuItem = (props) => {
                   }
                }),
          }}>
-            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 2, display: 'flex',}}>
+            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 0, display: 'flex',}}>
                <Box sx={{ ...styles.icon, backgroundImage: `url(/icons/${icon}${currentPage ? '_light' : ''}.png)`, marginRight: '5px', marginBottom: '5px' }} />
                <Text small style={{
                   color: 'inherit', width: 80,
