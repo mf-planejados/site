@@ -5,6 +5,8 @@ import { Carousel, Colors } from '../organisms'
 import { SectionAbout, SectionDevelopment, SectionProjects } from '../organisms/sections'
 import { Footer } from '../organisms/layout/footer'
 import { useAppContext } from '../context/AppContext'
+import { useState } from 'react'
+import { Banner } from '../organisms/banner/banner'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -44,7 +46,6 @@ export default function Home() {
                            // marginRight: 10,
                            justifyContent: 'center',
                            alignItems: 'center',
-                           backgroundColor: 'pink',
                            backgroundRepeat: 'no-repeat',
                            height: 123,
                            width: 250,
@@ -60,17 +61,7 @@ export default function Home() {
                         </Box>
                      </Box>
 
-                     <Box sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flex: 1,
-                        gap: 3,
-                        marginTop: { xs: `30px`, xm: '0px', md: '0px', lg: '0px' }
-                     }}>
-                        <Box sx={styles.imageHeader} />
-                     </Box>
+                     <Banner data={dataImages} />
                   </ContentContainer>
                </Box>
             </Box>
@@ -120,12 +111,5 @@ const styles = {
    textHeader: {
       color: '#fff'
    },
-   imageHeader: {
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center center',
-      backgroundImage: `url('https://mf-planejados.s3.us-east-1.amazonaws.com/a2799abb33672f85cc8cc68d357035db-home%2520page%2520marcenaria.jpeg')`,
-      width: { xs: '300px', xm: '90%', md: '90%', lg: '90%' },
-      height: { xs: '250px', xm: '90%', md: '90%', lg: '90%' }
-   },
+
 }

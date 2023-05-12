@@ -4,6 +4,7 @@ import { Box, Text } from "../../atoms";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useMediaQuery, useTheme } from "@mui/material";
+import { Colors } from "../layout/Colors";
 
 export const CarouselSlider = (props) => {
 
@@ -46,12 +47,13 @@ export const CarouselSlider = (props) => {
     comodo = null,
     style = {},
     thumb = false,
-    positionSelect = 0
+    positionSelect = 0,
+    dots = true
   } = props;
 
   console.log(data)
   const settings = {
-    dots: true,
+    dots: dots,
     fade: thumb ? true : false,
     adaptiveHeight: thumb ? true : false,
     infinite: true,
@@ -71,7 +73,7 @@ export const CarouselSlider = (props) => {
           slidesToShow: 3,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
+          dots: dots,
         }
       },
       {
@@ -88,7 +90,7 @@ export const CarouselSlider = (props) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true
+          dots: dots,
         }
       }
     ]
@@ -176,34 +178,30 @@ export const CarouselSlider = (props) => {
           ) : null}
         </>
         :
-        <Box sx={{ width: { xs: `100%`, xm: containerWidth, md: containerWidth, lg: containerWidth } }}>
+        <Box sx={{ width: { xs: `100%`, xm: containerWidth, md: containerWidth, lg: containerWidth }, }}>
           <Slider {...settings}>
             {data?.map((item) => (
               <Box sx={{
-                position: 'relative',
+                // position: 'relative',
+                display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
               }} key={item.id} >
                 <Box sx={{
                   ...styles.imageCarouselLarge,
                   backgroundImage: `url('${item.url}')`,
                   width: { xs: `100%`, xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
                   height: { xs: '220px', xm: height ? height : '300px', md: height ? height : '300px', lg: height ? height : '300px' },
-                  marginLeft: { xs: `0%`, xm: `0px`, md: `0px`, lg: `15px` },
-                  // marginLeft: thumb && '25%'
+                  margin: 'auto',
                 }} />
                 {text ?
                   <Text title style={{
-                    position: 'absolute',
-                    backgroundColor: '#0f0f0f',
                     opacity: 0.7,
-                    width: '50%',
-                    top: '50%',
-                    left: '50%',
                     textWeight: 'bold',
-                    transform: 'translate(-50%, -50%)',
-                    color: '#fff',
                     textAlign: 'center',
-                  }}>{item.category}</Text>
+                    margin: 'auto',
+                    marginTop: 5,
+                  }}>{item?.category}</Text>
                   : ''}
               </Box>
             ))

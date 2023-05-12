@@ -25,7 +25,7 @@ export const Carousel = (props) => {
         <>
             <Box sx={styles.container}>
                 {dataAmbients ?
-                    <CarouselSlider containerWidth={'90%'} data={dataAmbients} showArrows slideShow={widthCarousel ? qntImages > 6 ? 6 : 5 : 4} text={true} width={250} height={180} controls />
+                    <CarouselSlider containerWidth={'100%'} data={dataAmbients} showArrows slideShow={widthCarousel ? qntImages > 6 ? 6 : 5 : 4} text={true} width={250} height={180} controls />
                     : ''}
             </Box>
         </>
@@ -34,15 +34,13 @@ export const Carousel = (props) => {
 
 const styles = {
     container: {
-        // backgroundColor: 'red',
-        marginTop: 10,
         left: 0,
-        width: { xs: `80%`, xm: `100%`, md: `100%`, lg: `100%` },
-        marginLeft: { xs: `10%`, xm: `2.5%`, md: `2.5%`, lg: `5%` },
-        height: '250px',
-        position: 'absolute',
+        width: { xs: `90%`, xm: `100%`, md: `100%`, lg: `100%` },
+        margin: ' 100px auto',
+        height: 'auto',
+        // position: 'absolute',
         alignItems: 'center',
+        justifyContent: 'center',
         display: 'flex',
-        // paddingLeft: { xs: '0px', sm: '0px', md: '22px', lg: 12 },
     },
 }
