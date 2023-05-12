@@ -46,17 +46,17 @@ export const SectionAbout = (props) => {
                             flexDirection: 'column',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            padding: 5,
+                            padding: { xs: `10px 10px`, xm: 5, md: 5, lg: 5 },
                             width: '85%',
                             gap: 1
                         }}>
 
-                            <Text>Fundada em 1989 pelo Sr. Vicente Crescencio da Fonseca, a MARCENARIA FONSECA possui sede própria na cidade de São Paulo, no bairro Jardim Alfredo,
+                            <Text sx={styles.descritpion}>Fundada em 1989 pelo Sr. Vicente Crescencio da Fonseca, a MARCENARIA FONSECA possui sede própria na cidade de São Paulo, no bairro Jardim Alfredo,
                                 onde atua com móveis planejados de acordo com a necessidade do cliente, focando sempre na excelência da qualidade dos serviços prestados.
                                 Em 2001, Eder Moreira da Fonseca, assumiu a direção da marcenaria fundada pelo seu pai,
                                 o Sr. Vicente, o qual expandiu os negócios montando uma filial em Senador Firmino, estado de Minas Gerais.
                             </Text>
-                            <Text>
+                            <Text sx={styles.descritpion}>
                                 Hoje atuando no ramo de móveis planejados, com filosofia em satisfazer seus clientes,
                                 procurando garantir a eles qualidade e acabamentos finos dos produtos, pontualidade e profissionais qualificados.
                                 Desde sua fundação, a Marcenaria Fonseca possui autonomia em Móveis Planejados e Laqueação, sendo referência no mercado.
@@ -97,4 +97,7 @@ const styles = {
         width: '90%',
         height: '100%'
     },
+    descritpion:{
+        textAlign: { xs: `start`, xm: 'center', md: 'center', lg: 'center' }
+    }
 }

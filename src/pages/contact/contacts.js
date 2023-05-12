@@ -88,11 +88,11 @@ export default function Contacts() {
         <>
             <Box>
                 <Box sx={{ height: widthLarge ? 800 : 'auto', padding: { xs: 0, xm: 5, md: 5, lg: 5 } }}>
-                    <Box sx={{ ...styles.imageHeader, padding: { xs: 2, xm: 5, md: 5, lg: 5 } }}>
+                    <Box sx={{ ...styles.imageHeader, padding: { xs: 0, xm: 5, md: 5, lg: 5 } }}>
                         <ContentContainer center style={{ width: { xs: '100%', xm: '50%', md: '50%', lg: '50%' }, height: '100%', backgroundColor: 'rgba(0,0,0,0.5)' }}>
                             <Text title style={{ color: '#fff', marginTop: 30, textAlign: 'center' }}>CONTATO/ORÇAMENTO</Text>
                             <Text style={{ color: '#fff', marginTop: 20, width: '70%', textAlign: 'center' }}>Para duvidas, sugestões e melhorias, entre em contato conosco. Faça seu orçamento sem comprimisso!</Text>
-                            <Box sx={{ width: '80%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <Box sx={{ width: { xs: '95%', xm: '80%', md: '80%', lg: '80%' }, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
                                 <TextInput
                                     placeholder='João Silva'
@@ -178,7 +178,7 @@ export default function Contacts() {
 
 
                             </Box>
-                            <Button text="Enviar" style={{ width: '50%' }} onClick={() => handleSendBudget()} />
+                            <Button text="Enviar" style={{ width: '60%' }} onClick={() => handleSendBudget()} />
                         </ContentContainer>
                     </Box>
                 </Box>
