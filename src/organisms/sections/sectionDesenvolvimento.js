@@ -86,7 +86,7 @@ export const SectionDevelopment = () => {
                     {navBar ?
                         <Box sx={{
                             position: 'absolute',
-                            top: 380,
+                            top: 430,
                             height: '100px',
                             width: '250px'
                         }}>

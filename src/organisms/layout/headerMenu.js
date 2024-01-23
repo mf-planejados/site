@@ -78,23 +78,36 @@ export const HeaderMenu = ({ menuItems = [] }) => {
             //Menu Mobile
             <>
 
-               <Box sx={styles.menuResponsive}>
+               <Box sx={{
+                  ...styles.menuResponsive,
+                  ...(home && {
+                     boxShadow: readerHasColor ? `rgba(149, 157, 165, 0.17) 0px 6px 24px` : 'none',
+                     borderBottom: readerHasColor ? `1px solid #00000010` : 'none',
+                     backgroundColor: readerHasColor ? '#fff' : 'transparent',
+                     transition: 'background-color 0.3s ease-in-out'
+                  })
+               }}>
                   <Box sx={{
                      backgroundImage: `url('/logo.png')`,
                      backgroundSize: 'contain',
                      backgroundRepeat: 'no-repeat',
                      width: 1,
-                     height: 40,
-                     marginTop: 1,
+                     height: 30,
+                     marginTop: 0,
+                     display: home && (readerHasColor ? 'flex' : 'none'),
+                     transition: '1s',
+                     zIndex: 999999,
                      "&:hover": {
                         cursor: 'pointer', opacity: 0.8
                      }
                   }} onClick={() => router.push('/')} />
-                  <Hamburger toggled={showMenuMobile} toggle={setShowMenuMobile} duration={0.8} />
+                  <Hamburger toggled={showMenuMobile} size={25} toggle={setShowMenuMobile} duration={0.8} color={home ? (readerHasColor ? 'black' : "#fff") : 'black'} />
                </Box>
                {showMenuMobile ?
                   <>
-                     <Box sx={{...styles.menuMobileContainer, width: showMenuMobile ? '350px' : 0}}>
+                     <Box sx={{
+                        ...styles.menuMobileContainer, width: showMenuMobile ? '280px' : 0,
+                     }}>
                         <Box sx={{
                            ...styles.icon,
                            backgroundImage: `url('/logo.png')`,
@@ -159,7 +172,7 @@ const MenuItem = (props) => {
          }}>
             <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 0, display: 'flex', }}>
                <Box sx={{ ...styles.icon, backgroundImage: `url(/icons/${icon}${currentPage ? '_light' : ''}.png)`, marginRight: '5px', marginBottom: '5px' }} />
-               <Text  style={{
+               <Text style={{
                   color: 'inherit', width: 80
                }}>{text}</Text>
 
@@ -189,9 +202,9 @@ const styles = {
       backgroundColor: '#fff',
       padding: `40px 40px`,
       zIndex: 9999,
-      boxShadow:  `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
-      borderBottom:  `1px solid #00000010`,
-      backgroundColor:  '#fff',
+      boxShadow: `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
+      borderBottom: `1px solid #00000010`,
+      backgroundColor: '#fff',
    },
    userBox: {
       backgroundColor: '#00000017',
@@ -231,11 +244,11 @@ const styles = {
    },
    menuResponsive: {
       position: 'fixed',
-      maxHeight: '60px',
+      height: '30px',
       width: '100%',
       backgroundColor: '#fff',
       borderRight: `1px solid #00000010`,
-      padding: `40px`,
+      padding: `30px 20px`,
       alignItems: 'center',
       justifyContent: 'right',
       display: 'flex',

@@ -18,7 +18,7 @@ export const AppProvider = ({ children }) => {
    })
 
    const [dataImages, setDataImages] = useState([])
-   const [depositions, setDepositions] = useState([])
+   const [testimonial, setTestimonial] = useState([])
 
    const alert = new ShowAlert(setAlertData)
 
@@ -48,7 +48,7 @@ export const AppProvider = ({ children }) => {
             alert,
             dataImages,
             setDataImages,
-            depositions, setDepositions
+            testimonial, setTestimonial
          }}
       >
          {children}

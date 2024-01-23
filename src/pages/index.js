@@ -27,7 +27,7 @@ export default function Home() {
    const [showCarousel, setShowCarousel] = useState(false)
    const [dataGalery, setDataGalery] = useState(dataImages)
    const [showAllPhotos, setShowAllPhotos] = useState(false);
-   const [depositions, setDepositions] = useState([])
+   const [testimonials, setTestimonials] = useState([])
 
    const photosToShow = showAllPhotos ? dataGalery : dataGalery.slice(0, 3);
    const router = useRouter()
@@ -84,13 +84,12 @@ export default function Home() {
       }))
    }
 
-   const handleDepositions = async () => {
+   const handleTestimonials = async () => {
       try {
          setLoading(true)
-         const response = await api.get('/depositions')
+         const response = await api.get('/testimonials')
          const { data } = response
-         console.log(data)
-         setDepositions(data)
+         setTestimonials(data)
          setLoading(false)
       } catch (error) {
          console.log('error useEffect', error)
@@ -100,7 +99,7 @@ export default function Home() {
    }
 
    useEffect(() => {
-      handleDepositions()
+      handleTestimonials()
    }, [])
 
    const handleSendBudget = async () => {
@@ -269,7 +268,10 @@ export default function Home() {
                      <Box sx={{ display: 'flex', height: '40px', width: 6, backgroundColor: Colors.red }} />
                      <Text veryLarge>AMBIENTES PLANEJADOS</Text>
                   </Box>
-                  <Box sx={{ display: 'flex', gap: 2, marginTop: 2, marginBottom: 5 }}>
+                  <Box sx={{
+                     display: 'flex', gap: 2, marginTop: 2, marginBottom: 5,
+                     flexWrap: { xs: `wrap`, xm: `nowrap`, md: `nowrap`, lg: `nowrap` },
+                  }}>
                      {Array.from(new Set(dataImages?.filter(item => item.section === 'Ambientes')?.map(item => item?.category))).map((uniqueCategory, index) => {
                         const selected = uniqueCategory === ambientSelected;
 
@@ -435,7 +437,7 @@ export default function Home() {
                height: 'auto',
                flexDirection: 'column',
                gap: 1,
-               padding: { xs: `20px`, xm: `25px`, md: `50px`, lg: `0px 80px 0px 80px` },
+               padding: { xs: `40px`, xm: `25px`, md: `50px`, lg: `0px 80px 0px 80px` },
             }}>
                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', justifyContent: 'center' }}>
                   <Box sx={{ display: 'flex', height: '40px', width: 6, backgroundColor: Colors.red, marginRight: 1 }} />
@@ -455,7 +457,7 @@ export default function Home() {
                   }}>
                      <Box sx={{
                         display: 'flex', flexDirection: 'column', gap: 2, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap',
-                        maxWidth: { xs: 380, xm: 380, md: 500, lg: 500 }
+                        maxWidth: { xs: 300, xm: 380, md: 500, lg: 500 }
                      }}>
                         <Text light title style={{ maxWidth: 500, textAlign: 'center' }}>
                            Veja o que nossos clientes estão falando sobre o jeito que a MF Planejados realizam seus sonhos!
@@ -464,9 +466,12 @@ export default function Home() {
                            <Button onClick={() => router.push('/ambients')} text="De uma olhada nos projetos" />
                         </Box>
                      </Box>
-                     <Box sx={{ width: '100%', maxWidth: '500px', margin: 'auto', }}>
+                     <Box sx={{
+                        width: '100%', maxWidth: { xs: 200, xm: 200, md: 500, lg: 500 }, margin: 'auto',
+                        padding: { xs: `0px 10px`, xm: `10px`, md: `10px`, lg: `10px` },
+                     }}>
                         <Slider ref={sliderRef} {...settings}>
-                           {depositions?.map((item) => (
+                           {testimonials?.map((item) => (
                               <Box
                                  key={item._id}
                                  sx={{
@@ -516,9 +521,14 @@ export default function Home() {
                gap: 5,
                backgroundColor: '#f0f0f0'
             }}>
-               <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                  <Box sx={{ display: 'flex', height: '40px', width: 6, backgroundColor: Colors.red, marginRight: 1 }} />
-                  <Text veryLarge>Podemos ajudar a realizar</Text>
+               <Box sx={{
+                  display: 'flex', gap: 1, alignItems: 'center',
+                  flexDirection: { xs: `column`, xm: `column`, md: `row`, lg: `row` },
+               }}>
+                  <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', }}>
+                     <Box sx={{ display: 'flex', height: '40px', width: 6, backgroundColor: Colors.red, marginRight: 1 }} />
+                     <Text veryLarge>Podemos ajudar a realizar</Text>
+                  </Box>
                   <Text veryLarge bold style={{ color: Colors.red }}>Seu Sonho?</Text>
                </Box>
                <Text light style={{ maxWidth: 500, textAlign: 'center' }}>Nos conte mais sobre o seu Projeto, para entendermos melhor a sua necessidade, que entraremos
@@ -644,7 +654,7 @@ const styles = {
       // display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: { xs: 10, xm: 10, md: 10, lg: 0 },
+      marginTop: { xs: 0, xm: 10, md: 10, lg: 0 },
       left: 0,
       width: '100%',
       height: 'auto'
