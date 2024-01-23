@@ -8,18 +8,23 @@ import { useRouter } from 'next/router';
 
 const menuItems = [
    { to: '/', text: 'HOME', icon: 'home_icon' },
-   { to: '/ambients/ambient', text: 'AMBIENTES', icon: 'ambients_icon' },
+   { to: '/ambients', text: 'AMBIENTES', icon: 'ambients_icon' },
    { to: '/product/products', text: 'PRODUTOS', icon: 'produtos_icon' },
    { to: '/contact/contacts', text: 'CONTATO', icon: 'tel-icon' },
 ];
 
 function App({ Component, pageProps }) {
 
+   const router = useRouter();
+
    return (
       <AppProvider>
          <Box sx={styles.bodyContainer}>
-            <HeaderMenu menuItems={menuItems} />
-            <Box sx={styles.contentContainer}>
+            {router.pathname !== '/' && <HeaderMenu menuItems={menuItems} />}
+            <Box sx={{
+               ...styles.contentContainer,
+               marginTop: router.pathname !== '/' ? { xs: `60px`, xm: 10, md: 10, lg: 10 } : 0
+            }}>
                <Component {...pageProps} />
             </Box>
          </Box>
@@ -44,9 +49,9 @@ const styles = {
       flex: 1,
       gap: `35px`,
       backgroundColor: '#fff',
-      padding: { xs: `20px`, xm: `25px`, md: `50px`, lg: `0px 80px 0px 80px` },
+      // padding: { xs: `20px`, xm: `25px`, md: `50px`, lg: `0px 80px 0px 80px` },  
       // paddingBottom: `60px`,
       overflowY: 'hidden',
-      marginTop: { xs: `60px`, xm: 10, md: 10, lg: 10 }
+      // marginTop: { xs: `60px`, xm: 10, md: 10, lg: 10 }
    },
 }

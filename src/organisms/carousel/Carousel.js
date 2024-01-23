@@ -48,10 +48,10 @@ export const CarouselSlider = (props) => {
     style = {},
     thumb = false,
     positionSelect = 0,
-    dots = true
+    dots = true,
+    light = false
   } = props;
 
-  console.log(data)
   const settings = {
     dots: dots,
     fade: thumb ? true : false,
@@ -102,7 +102,8 @@ export const CarouselSlider = (props) => {
 
   return (
     <>
-      {thumb ?
+      {thumb
+        ?
         <>
           <Slider
             asNavFor={slider2}
@@ -116,8 +117,10 @@ export const CarouselSlider = (props) => {
               }} key={index} >
                 <Box sx={{
                   ...styles.imageCarouselLarge,
+                  filter: light && 'brightness(0) invert(1)',
+                  backgroundSize: { xs: `contain`, xm: 'cover', md: 'cover', lg: 'cover' },
                   backgroundImage: `url('${item?.url || '/img/sem-imagem.jpg'}')`,
-                  width: { xs: `90%`, xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
+                  width: { xs: light ? `150px` : '350px', xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
                   height: { xs: '300px', xm: height ? height : '300px', md: height ? height : '300px', lg: height ? height : '300px' },
                   // marginLeft: { xs: `15%`, xm: `0px`, md: `0px`, lg: `0px` }
                   // marginLeft: thumb && '25%'
@@ -165,6 +168,7 @@ export const CarouselSlider = (props) => {
                   }} key={item?.id} >
                     <Box sx={{
                       ...styles.imageCarouselLarge,
+                      filter: light && 'brightness(0) invert(1)',
                       backgroundImage: `url('${item?.url}')`,
                       width: { xs: `100px`, xm: `150px`, md: `100px`, lg: `100px` },
                       height: { xs: '60px', xm: '60px', md: '60px', lg: '60px' },
@@ -179,25 +183,28 @@ export const CarouselSlider = (props) => {
         </>
         :
         <Box sx={{ width: { xs: `100%`, xm: containerWidth, md: containerWidth, lg: containerWidth }, }}>
-          <Slider {...settings}>
+          <Slider {...settings} initialSlide={positionSelect}>
             {data?.map((item) => (
               <Box sx={{
                 // position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-              }} key={item.id} >
+              }} key={item._id} >
                 <Box sx={{
                   ...styles.imageCarouselLarge,
+                  filter: light && 'brightness(0) invert(1)',
                   backgroundImage: `url('${item.url}')`,
-                  width: { xs: `100%`, xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
-                  height: { xs: '220px', xm: height ? height : '300px', md: height ? height : '300px', lg: height ? height : '300px' },
+                  backgroundSize: { xs: light ? `contain` :`cover`, xm: 'cover', md: 'cover', lg: 'cover' },
+                  width: { xs: light ? `150px` : '100%', xm: width ? width : `320px`, md: width ? width : `320px`, lg: width ? width : `320px` },
+                  height: { xs: light ? '100px' : '300px', xm: height ? height : '300px', md: height ? height : '300px', lg: height ? height : '300px' },
                   margin: 'auto',
                 }} />
                 {text ?
                   <Text title style={{
                     opacity: 0.7,
                     textWeight: 'bold',
+                    color: light && '#fff',
                     textAlign: 'center',
                     margin: 'auto',
                     marginTop: 5,

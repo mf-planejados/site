@@ -13,8 +13,8 @@ export const SectionAbout = (props) => {
 
     useEffect(() => {
         if (data) {
-        const filterImages = data?.filter(item => item.section === section)
-        setDataSocios(filterImages)
+            const filterImages = data?.filter(item => item.section === section)
+            setDataSocios(filterImages)
         }
     }, [data])
 
@@ -28,19 +28,17 @@ export const SectionAbout = (props) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                         width: '100%',
-                        // height: '250px',
+                        height: 'auto',
                         flex: 1,
                         gap: 1,
+                        marginTop: { xs: 5, xm: 7, md: 7, lg: 0 },
 
                     }}>
-                        <Text title style={{
-                            borderBottom: `1px solid ${Colors.darkRed}`,
-                            color: Colors.darkRed,
-                            fontWeight: 'bold',
-                            width: 180,
-                            textAlign: 'center',
-                            paddingBottom: 10
-                        }}>SOBRE NÓS</Text>
+                        <Box sx={{ display: 'flex', gap: 4, alignItems: 'center',
+                    marginBottom: { xs: 5, xm: 7, md: 7, lg: 0 },  }}>
+                            <Box sx={{ display: 'flex', height: 40, width: 6, backgroundColor: Colors.red }} />
+                            <Text veryLarge>A M&F PLANEJADOS</Text>
+                        </Box>
                         <Box sx={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -67,10 +65,10 @@ export const SectionAbout = (props) => {
                             flexDirection: 'row',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            width: { xs: `100%`, xm: '100%', md: '100%', lg: '100%' },
+                            width: { xs: `70%`, xm: '100%', md: '100%', lg: '100%' },
                             gap: 3,
                         }}>
-                            <Card data={dataSocios} height={260}/>
+                            <Card data={dataSocios} height={180} />
                         </Box>
                     </Box>
                 </ContentContainer>
@@ -97,7 +95,7 @@ const styles = {
         width: '90%',
         height: '100%'
     },
-    descritpion:{
+    descritpion: {
         textAlign: { xs: `start`, xm: 'center', md: 'center', lg: 'center' }
     }
 }

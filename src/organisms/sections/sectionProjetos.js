@@ -15,8 +15,8 @@ export const SectionProjects = (props) => {
 
     useEffect(() => {
         if (data) {
-        const filterImages = data?.filter(item => item.section === section)
-        setDataImage(filterImages)
+            const filterImages = data?.filter(item => item.section === section)
+            setDataImage(filterImages)
         }
     }, [data])
 
@@ -25,16 +25,19 @@ export const SectionProjects = (props) => {
 
     return (
         <>
-            <Box fullWidth sx={styles.container}>
-                <ContentContainer border styles={{ backgroundColor: 'pink', }}>
-                    <Box sx={{ flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, display: 'flex' }}>
-                        <Box sx={{ width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' } }}>
-                            <CarouselSlider data={dataImage} slideShow={widthCarousel ? 3 : 2} autoplaySlide={true} dots={false}/>
+            <Box fullWidth sx={{ ...styles.container }}>
+                <ContentContainer>
+                    <Box sx={{ flexDirection: { xs: `column`, xm: 'row', md: 'row', lg: 'row' }, display: 'flex', gap: 2 }}>
+                        <Box sx={{
+                            width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' },
+                            height: { xs: `auto`, xm: 'auto', md: 'auto', lg: 400  }
+                        }}>
+                            <CarouselSlider data={dataImage} slideShow={widthCarousel ? 3 : 2} autoplaySlide={true} dots={false} height={350} width={350}/>
                         </Box>
                         <Box sx={{ padding: { xs: `40px 10px 10px 10px`, xm: '30px 10px 30px 30px', md: '30px 10px 30px 30px', lg: '30px 10px 30px 30px' }, alignItems: 'center', justifyContent: 'center', width: { xs: `100%`, xm: '50%', md: '50%', lg: '50%' } }}>
-                            <Text title bold style={{
-                                ...styles.text, padding: '0px 10px 5px 10px', borderBottom: `2px solid ${Colors.darkRed}`,
-                                color: Colors.darkRed, width: '200px', margin: 'auto'
+                            <Text veryLarge style={{
+                                ...styles.text, padding: '0px 10px 5px 10px',
+                                color: Colors.darkRed, margin: 'auto'
                             }}>Nossos projetos</Text>
                             <Text style={{ ...styles.text, padding: '30px 10px 5px 10px', }}> Nossa empresa conta com um processo de desenvolvimento bem planejado, desde o atendimento até a entrega.
                                 Contamos com uma enorme variedade de modelos,

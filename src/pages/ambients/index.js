@@ -46,19 +46,14 @@ export default function Portifolio() {
    const [section, setSection] = useState('Galeria')
    const [dataGalery, setDataGalery] = useState([])
    const [showCarousel, setShowCarousel] = useState(false)
-   const [imagemSelecionada, setImagemSelecionada] = useState(dataGalery[0]);
+   const [imagemSelecionada, setImagemSelecionada] = useState();
 
-   const ambientData = async () => {
-
-
-      return
-   }
 
    useEffect(() => {
       setLoading(true)
       setTimeout(() => {
          const filterImages = dataImages?.filter(item => item.section === section)
-         const dataImg = comodoSelected ? filterImages?.filter((item) => item.category == comodoSelected.name) : filterImages
+         const dataImg = comodoSelected ? filterImages?.filter((item) => item.category == comodoSelected) : filterImages
          setDataGalery(dataImg)
          setLoading(false)
       },
@@ -78,32 +73,54 @@ export default function Portifolio() {
 
    const qntImages = dataGalery.length
 
+   const openCarousel = (index) => {
+      setImagemSelecionada(dataGalery[index]);
+      setShowCarousel(true);
+   };
+
 
 
    return (
       <Box sx={styles.container}>
-         <Box sx={styles.cardComodo}>
-            <Box sx={{
-               width: { xs: '100%', xm: '80%', md: '70%', lg: '70%' },
-               marginTop: { xs: 15, xm: 7, md: 7, lg: 7 },
-               marginRight: { xs: '0%', xm: '20%', md: '20%', lg: '20%' },
-
-               borderBottom: `1px solid ${Colors.darkRed}`
-            }}>
-               <Text bold style={{ textAlign: 'center', fontSize: 30, marginBottom: 20, color: Colors.darkRed }}>Veja alguns de nossos projetos entregues</Text>
+         <Box sx={{
+            display: 'flex',
+            marginTop: { xs: 15, xm: 7, md: 7, lg: 10 },
+            flexDirection: 'column'
+         }}>
+            <Box sx={styles.cardComodo}>
+               <Box sx={{
+                  width: { xs: '80%', xm: '80%', md: '70%', lg: '70%' },
+                  display: 'flex', gap: 4, alignItems: 'center', margin: '15px 0px'
+               }}>
+                  <Box sx={{ display: 'flex', height: '90%', width: 6, backgroundColor: Colors.red }} />
+                  <Text veryLarge>VEJA ALGUNS DE NOSSOS PROJETOS ENTREGUES</Text>
+               </Box>
             </Box>
-            <ContentContainer style={{ position: { xs: 'fixed', xm: 'fixed', md: 'fixed', lg: 'fixed' }, right: 0, width: { xs: '100%', xm: '25%', md: '25%', lg: '25%' }, zIndex: 999999, marginTop: { xs: -2, xm: 1.5, md: 1.5, lg: 1.5 } }}>
+            <Box sx={{ display: 'flex', gap: 2, marginTop: 2, marginBottom: 5, alignItems: 'center', justifyContent: 'center' }}>
+               {Array.from(new Set(dataImages?.filter(item => item.section === 'Galeria')?.map(item => item?.category))).map((uniqueCategory, index) => {
+                  const selected = uniqueCategory === comodoSelected;
 
-               <DropList
-                  data={comodos}
-                  placeholder='Selecione um cômodo'
-                  fieldToDisplay='name'
-                  selectedOption={comodoSelected}
-                  onSelect={(value) => setComodoSelected(value)}
-                  maxHeight={215}
-                  filterOpitions
-               />
-            </ContentContainer>
+                  return (
+                     <Box key={index} sx={{
+                        display: 'flex', padding: '10px 12px',
+                        backgroundColor: selected ? Colors.red : "#fff",
+                        borderRadius: 2,
+                        boxShadow: `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
+                        transition: '.3s',
+                        color: '#000',
+                        "&:hover": {
+                           opacity: .5,
+                           backgroundColor: Colors.red,
+                           transition: '.3s',
+                           cursor: 'pointer',
+                           color: '#fff'
+                        }
+                     }} onClick={() => setComodoSelected(uniqueCategory)}>
+                        <Text style={{ color: selected ? '#fff' : 'inherit' }}>{uniqueCategory}</Text>
+                     </Box>
+                  );
+               })}
+            </Box>
          </Box>
          <ContentContainer style={{ marginTop: { xs: 5, xm: 5, md: 5, lg: 5 }, marginBottom: 10 }}>
             <Box sx={styles.containerGalery}>
@@ -143,19 +160,23 @@ export default function Portifolio() {
             sx={{ color: '#fff', zIndex: 9999999999, }}
             open={showCarousel}
          >
-            <Box sx={{ width: { xs: `85%`, xm: '90%', md: '90%', lg: '90%' } }} >
+            <Box sx={{ width: { xs: `85%`, xm: '90%', md: '90%', lg: '90%' }, position: 'relative' }} >
                <Box sx={{
                   backgroundImage: `url('/icons/close_menu_icon.png')`,
                   backgroundSize: 'contain',
                   backgroundRepeat: 'no-repeat',
-                  marginLeft: '95%',
                   width: 40,
                   height: 40,
+                  backgroundColor: '#f0f0f0',
+                  borderRadius: 40,
+                  position: 'absolute',
+                  right: { xs: -20, xm: 20, md: 180, lg: 180 },
+                  top: { xs: -10, xm: -10, md: 10, lg: 10 },
                   "&:hover": {
                      cursor: 'pointer', opacity: 0.8
                   }
                }} onClick={() => setShowCarousel(!showCarousel)} />
-               <CarouselSlider containerWidth={'100%'}
+               {/* <CarouselSlider containerWidth={'100%'}
                   data={imagensOrdenadas}
                   showArrows
                   slideShowThumb={widthCarousel ? qntImages >= 12 ? 12 : qntImages : widthMobile ? qntImages >= 4 ? 4 : qntImages : qntImages >= 8 ? 8 : qntImages}
@@ -165,7 +186,14 @@ export default function Portifolio() {
                   height={widthCarousel ? 600 : 480}
                   controls thumb
                   positionSelect={posicaoImagemSelecionada}
-               />
+               /> */}
+               <Box sx={{
+                  ...styles.imageCarouselLarge,
+                  backgroundImage: `url('${imagemSelecionada?.url}')`,
+                  width: { xs: `100%`, xm: `320px`, md: `320px`, lg: 600 },
+                  height: { xs: '350px', xm: '300px', md: '300px', lg: 500 },
+                  margin: 'auto',
+               }} />
             </Box>
          </Backdrop>
          <Footer />
@@ -213,5 +241,11 @@ const styles = {
       position: 'absolute',
       justifyContent: 'center',
       alignItems: 'center'
+   },
+   imageCarouselLarge: {
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      overflow: 'hidden',
+      backgroundPosition: 'center center',
    },
 }

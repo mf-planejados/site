@@ -31,7 +31,6 @@ export default function Contacts() {
 
         const { name, email, telephone, subject, message } = budget
 
-        console.log(budget)
 
         if (name == '') {
             return alert.error('O nome é obrigatório')

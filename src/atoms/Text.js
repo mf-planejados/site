@@ -10,6 +10,7 @@ export const Text = (props) => {
       small = false,
       large = false,
       title = false,
+      veryLarge = false,
       style = {}
    } = props;
 
@@ -25,6 +26,7 @@ export const Text = (props) => {
             ...(small && { fontSize: {xs:`10px`, xm: `13px`, md: `13px`,lg: `13px`} }),
             ...(large && { fontSize: {xs:`15px`, xm: `18px`, md: `18px`,lg: `18px`} }),
             ...(title && { fontSize: {xs:`18px`, xm: `22px`, md: `22px`,lg: `22px`} }),
+            ...(veryLarge && { fontSize: {xs:`20px`, xm: `25px`, md: `30px`,lg: `35px`} }),
             ...style
          }}
       >

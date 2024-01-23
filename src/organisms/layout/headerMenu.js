@@ -1,7 +1,7 @@
 import { useMediaQuery, useTheme } from "@mui/material"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Box, Text } from "../../atoms"
 import { Colors } from "./Colors"
 import Hamburger from "hamburger-react"
@@ -9,18 +9,45 @@ import Hamburger from "hamburger-react"
 export const HeaderMenu = ({ menuItems = [] }) => {
 
    const router = useRouter()
+   const home = router.pathname === '/';
 
    const [showMenuUser, setShowMenuUser] = useState(false)
    const [showMenuMobile, setShowMenuMobile] = useState(false)
    const theme = useTheme()
    const navBar = useMediaQuery(theme.breakpoints.down('md'))
+   const [scrollPosition, setScrollPosition] = useState(0);
+
+   useEffect(() => {
+      const handleScroll = () => {
+         setScrollPosition(window.scrollY);
+      };
+
+
+
+      // Adiciona um ouvinte de evento de rolagem quando o componente é montado
+      window.addEventListener('scroll', handleScroll);
+
+      // Remove o ouvinte de evento de rolagem quando o componente é desmontado
+      return () => {
+         window.removeEventListener('scroll', handleScroll);
+      };
+   }, []);
+
+   const readerHasColor = scrollPosition > 0;
 
    return (
       <>
          {!navBar ?
             //Menu Desktop
             <>
-               <Box sx={styles.leftMenuMainContainer}>
+               <Box sx={{
+                  ...styles.leftMenuMainContainer, ...(home && {
+                     boxShadow: readerHasColor ? `rgba(149, 157, 165, 0.17) 0px 6px 24px` : 'none',
+                     borderBottom: readerHasColor ? `1px solid #00000010` : 'none',
+                     backgroundColor: readerHasColor ? '#fff' : 'transparent',
+                     transition: 'background-color 0.3s ease-in-out',
+                  })
+               }}>
                   <Box sx={{
                      ...styles.icon,
                      backgroundImage: `url('/logo.png')`,
@@ -28,13 +55,16 @@ export const HeaderMenu = ({ menuItems = [] }) => {
                      height: 60,
                      width: 120,
                      left: 0,
+                     ...(home && { display: readerHasColor ? 'flex' : 'none', }),
                      "&:hover": {
                         cursor: 'pointer', opacity: 0.8
                      }
                   }} onClick={() => router.push('/')} />
-                  < Box sx={{ display: 'flex', width: '35%', justifyContent: 'center' }}>
+                  < Box sx={{ display: 'flex', width: '100%', justifyContent: 'flex-end' }}>
                      {menuItems.map((item, index) =>
                         <MenuItem
+                           readerHasColor={readerHasColor}
+                           home={home}
                            key={`${index}_${item.to}`}
                            to={item.to}
                            text={item.text}
@@ -64,7 +94,7 @@ export const HeaderMenu = ({ menuItems = [] }) => {
                </Box>
                {showMenuMobile ?
                   <>
-                     <Box sx={styles.menuMobileContainer}>
+                     <Box sx={{...styles.menuMobileContainer, width: showMenuMobile ? '350px' : 0}}>
                         <Box sx={{
                            ...styles.icon,
                            backgroundImage: `url('/logo.png')`,
@@ -77,7 +107,7 @@ export const HeaderMenu = ({ menuItems = [] }) => {
                               cursor: 'pointer', opacity: 0.8
                            }
                         }} onClick={() => router.push('/')} />
-                        < Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                        < Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, width: showMenuMobile ? '350px' : 0 }}>
                            {menuItems.map((item, index) =>
                               <MenuItem
                                  key={`${index}_${item.to}`}
@@ -98,41 +128,52 @@ export const HeaderMenu = ({ menuItems = [] }) => {
 
 const MenuItem = (props) => {
 
-   const { to, text, icon, currentPage, onClick } = props
+   const { to, text, icon, currentPage, onClick, readerHasColor, home } = props
+   const [isHovered, setIsHovered] = useState(false);
+
+
    return (
-      <Link href={to} onClick={onClick}>
+      <Link href={to} onClick={onClick}
+         onMouseEnter={() => setIsHovered(true)}
+         onMouseLeave={() => setIsHovered(false)}>
          <Box sx={{
             display: 'flex',
             padding: `35px 20px`,
+            flexDirection: 'column',
             justifyContent: 'center',
+            alignItems: 'center',
             width: { xs: `100%`, xm: '60%', md: '60%', lg: '60%' },
             textAlign: 'center',
             color: currentPage ? '#f0f0f0' : Colors.paleDarkBlue,
+            ...(home && { color: currentPage ? readerHasColor ? '#f0f0f0 ' : '#f0f0f0' : readerHasColor ? Colors.paleDarkBlue : '#fff', }),
             ...(currentPage ?
                { backgroundColor: Colors.lightBlue }
                :
                {
                   "&:hover": {
-                     borderBottom: { xs: `none`, xm: `0.5px solid ${Colors.darkRed}`, md: `0.5px solid ${Colors.darkRed}`, lg: `0.5px solid ${Colors.darkRed}` },
+                     // borderBottom: { xs: `none`, xm: `0.5px solid ${Colors.darkRed}`, md: `0.5px solid ${Colors.darkRed}`, lg: `0.5px solid ${Colors.darkRed}` },
                      color: Colors.darkRed,
-                     fontWeight: 'bold',
+                     transition: 'border-bottom 0.1s ease-in-out',
                   }
                }),
          }}>
-            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 0, display: 'flex',}}>
+            <Box sx={{ alignItems: 'center', color: 'inherit', marginBottom: 0, display: 'flex', }}>
                <Box sx={{ ...styles.icon, backgroundImage: `url(/icons/${icon}${currentPage ? '_light' : ''}.png)`, marginRight: '5px', marginBottom: '5px' }} />
-               <Text small style={{
-                  color: 'inherit', width: 80,
-                  "&:hover": {
-                     fontWeight: 'bold',
-                  }
+               <Text  style={{
+                  color: 'inherit', width: 80
                }}>{text}</Text>
 
                <Box>
                </Box>
             </Box>
          </Box>
-      </Link>
+         <Box sx={{
+            backgroundColor: Colors.darkRed,
+            width: isHovered ? '70%' : '0',
+            transition: 'width 0.3s ease-in-out',
+            height: '2px', backgroundColor: Colors.darkRed
+         }} />
+      </Link >
 
    )
 }
@@ -146,10 +187,11 @@ const styles = {
       height: '95px',
       width: '100%',
       backgroundColor: '#fff',
-      borderBottom: `1px solid #00000010`,
       padding: `40px 40px`,
-      zIndex: 9999999,
-      boxShadow: `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
+      zIndex: 9999,
+      boxShadow:  `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
+      borderBottom:  `1px solid #00000010`,
+      backgroundColor:  '#fff',
    },
    userBox: {
       backgroundColor: '#00000017',

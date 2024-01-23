@@ -56,7 +56,7 @@ const styles = {
       flexDirection: 'column',
       padding: {xs:`10px`, xm: `10px`, md: `30px`,lg: `30px`},
       overflow: 'hidden',
-      borderRadius: `12px`,
+      borderRadius: `4px`,
       backgroundColor: '#fff',
       boxShadow: `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
       

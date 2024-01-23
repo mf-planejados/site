@@ -6,7 +6,7 @@ import { getImages } from "../../validators/api-requests";
 
 export const Banner = (props) => {
 
-    const { data = [] } = props
+    const { data = [], children } = props
 
     const [dataBanner, setDataBanner] = useState()
     const [section, setSection] = useState('Banner')
@@ -34,6 +34,7 @@ export const Banner = (props) => {
                     backgroundImage: `url(${item.url})`,
                 }} />
             ))}
+            {children}
             </Box>
         </>
     )
@@ -55,7 +56,7 @@ const styles = {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
         backgroundImage: `url('https://mf-planejados.s3.us-east-1.amazonaws.com/a2799abb33672f85cc8cc68d357035db-home%2520page%2520marcenaria.jpeg')`,
-        width: { xs: '300px', xm: '90%', md: '90%', lg: '90%' },
-        height: { xs: '250px', xm: '90%', md: '90%', lg: '90%' }
+        width: { xs: '100%', xm: '90%', md: '90%', lg: '100%' },
+        height: { xs: '300px', xm: '90%', md: '90%', lg: '100%' }
      },
 }

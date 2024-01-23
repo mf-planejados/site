@@ -6,15 +6,18 @@ import { getImages } from "../../validators/api-requests";
 
 export const Carousel = (props) => {
 
-    const { data = [] } = props
+    const { data = [], section = 'Ambientes', filter = true, slideShow = false, width = false, height = false, light = false } = props
 
     const [dataAmbients, setDataAmbients] = useState()
-    const [section, setSection] = useState('Ambientes')
 
     useEffect(() => {
         if (data) {
-            const filterImages = data?.filter(item => item.section === section)
-            setDataAmbients(filterImages)
+            if (filter) {
+                const filterImages = data?.filter(item => item.section === section)
+                setDataAmbients(filterImages)
+            } else {
+                setDataAmbients(data)
+            }
         }
     }, [data])
 
@@ -25,7 +28,7 @@ export const Carousel = (props) => {
         <>
             <Box sx={styles.container}>
                 {dataAmbients ?
-                    <CarouselSlider containerWidth={'100%'} data={dataAmbients} showArrows slideShow={widthCarousel ? qntImages > 6 ? 6 : 5 : 4} text={true} width={250} height={180} controls />
+                    <CarouselSlider containerWidth={'100%'} data={dataAmbients} showArrows slideShow={slideShow ? slideShow : widthCarousel ? qntImages > 6 ? 6 : 5 : 4} text={true} width={width ? width : 250} height={height ? height : 180} controls light={light}/>
                     : ''}
             </Box>
         </>

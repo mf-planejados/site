@@ -41,7 +41,7 @@ export const Card = (props) => {
                                     
                                  }
                             }} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} />
-                            {showText ?
+                            {/* {showText ?
                                 <Text title style={{
                                     position: 'absolute',
                                     backgroundColor: 'rgba(255,0,0,0.5)',
@@ -70,8 +70,8 @@ export const Card = (props) => {
                                 textAlign: 'center',
                                 opacity: 0,
                                 transition: 'opacity 2s ease',
-                            }}>{item?.namePerfil}</Text>}
-                            <Text large style={{ color: Colors.darkRed, borderBottom: `1px solid ${Colors.darkRed}`, width: 80, textAlign: 'center', padding: '0px 0px 10px 0px' }}>{item.level}</Text>
+                            }}>{item?.namePerfil}</Text>} */}
+                            <Text large style={{ color: Colors.darkRed, width: 80, textAlign: 'center', padding: '0px 0px 10px 0px' }}>{item.level}</Text>
                         </ContentContainer>
                     ))}
                 </Box>

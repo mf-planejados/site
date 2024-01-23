@@ -3,6 +3,7 @@ import { Backdrop, CircularProgress } from "@mui/material";
 import { useRouter } from "next/router";
 import { Alert } from "../organisms";
 import { getImages } from "../validators/api-requests";
+import { api } from "../api/api";
 
 export const AppContext = createContext({});
 
@@ -17,6 +18,8 @@ export const AppProvider = ({ children }) => {
    })
 
    const [dataImages, setDataImages] = useState([])
+   const [depositions, setDepositions] = useState([])
+
    const alert = new ShowAlert(setAlertData)
 
    const handleImageAmbients = async () => {
@@ -27,12 +30,11 @@ export const AppProvider = ({ children }) => {
          setDataImages(data)
          setLoading(false)
       } catch (error) {
-         console.log(error)
+         console.log('error useEffect', error)
       } finally {
          setLoading(false)
       }
    }
-
 
    useEffect(() => {
       handleImageAmbients()
@@ -45,7 +47,8 @@ export const AppProvider = ({ children }) => {
             setLoading,
             alert,
             dataImages,
-            setDataImages
+            setDataImages,
+            depositions, setDepositions
          }}
       >
          {children}
