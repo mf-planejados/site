@@ -21,14 +21,15 @@ export const ContentContainer = (props) => {
       gap = 2,
       width = null,
       style = {},
-      border = false
+      border = false,
+      onClick = () => { }
    } = props;
 
    return (
       <Box sx={{
          ...styles.contentContainer,
          gap,
-         ...(border && {border: `1px solid ${Colors.darkRed}`}),
+         ...(border && { border: `1px solid ${Colors.darkRed}` }),
          ...(width && { width }),
          ...(fullWidth && { flex: 1 }),
          ...(row ?
@@ -43,8 +44,8 @@ export const ContentContainer = (props) => {
                ...(right && { alignItems: 'flex-end' }),
             }),
          ...style
-         
-      }}>
+
+      }} onClick={onClick}>
          {children}
       </Box>
    )
@@ -54,11 +55,11 @@ const styles = {
    contentContainer: {
       display: 'flex',
       flexDirection: 'column',
-      padding: {xs:`10px`, xm: `10px`, md: `30px`,lg: `30px`},
+      padding: { xs: `10px`, xm: `10px`, md: `30px`, lg: `30px` },
       overflow: 'hidden',
       borderRadius: `4px`,
       backgroundColor: '#fff',
       boxShadow: `rgba(149, 157, 165, 0.17) 0px 6px 24px`,
-      
+
    }
 }

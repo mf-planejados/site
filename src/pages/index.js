@@ -10,7 +10,7 @@ import { Banner } from '../organisms/banner/banner'
 import { menuItems } from '../helpers/configMenu'
 import { Backdrop, useMediaQuery, useTheme } from '@mui/material'
 import { useRouter } from 'next/router'
-import { sendBudget } from '../validators/api-requests'
+import { emailValidator, sendBudget } from '../validators/api-requests'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -106,18 +106,20 @@ export default function Home() {
 
       const { name, email, telephone, subject, message } = budget
 
+      console.log(email)
+
       if (name == '') {
          return alert.error('O nome é obrigatório')
       }
-      if (email == '') {
+      if (!email) {
          alert.error('O email é obrigatório')
          return false
       }
-      if (telephone == '') {
+      if (!telephone) {
          alert.error('O telephone é obrigatório')
          return false
       }
-      if (telephone.length < 10) {
+      if (telephone?.length < 10) {
          alert.error('O telephone está incorreto')
          return false
       }
