@@ -89,8 +89,9 @@ export default function Portifolio() {
          }}>
             <Box sx={styles.cardComodo}>
                <Box sx={{
-                  width: { xs: '80%', xm: '80%', md: '70%', lg: '70%' },
-                  display: 'flex', gap: 4, alignItems: 'center', margin: '15px 0px'
+                  width: { xs: '80%', xm: '80%', md: '70%', lg: '70%', xl: '100%' },
+                  display: 'flex', gap: 4, alignItems: 'center', margin: '15px 0px',
+                  justifyContent: 'center'
                }}>
                   <Box sx={{ display: 'flex', height: '90%', width: 6, backgroundColor: Colors.red }} />
                   <Text veryLarge>VEJA ALGUNS DE NOSSOS PROJETOS ENTREGUES</Text>
@@ -160,7 +161,7 @@ export default function Portifolio() {
             sx={{ color: '#fff', zIndex: 9999999999, }}
             open={showCarousel}
          >
-            <Box sx={{ width: { xs: `85%`, xm: '90%', md: '90%', lg: '90%' }, position: 'relative' }} >
+            <Box sx={{ width: { xs: `85%`, xm: '90%', md: '90%', lg: '90%', xl: '100%' }, position: 'relative' }} >
                <Box sx={{
                   backgroundImage: `url('/icons/close_menu_icon.png')`,
                   backgroundSize: 'contain',
@@ -170,8 +171,8 @@ export default function Portifolio() {
                   backgroundColor: '#f0f0f0',
                   borderRadius: 40,
                   position: 'absolute',
-                  right: { xs: -20, xm: 20, md: 180, lg: 180 },
-                  top: { xs: -10, xm: -10, md: 10, lg: 10 },
+                  right: { xs: -20, xm: 20, md: 180, lg: 180, xl: 500 },
+                  top: { xs: -10, xm: -10, md: 10, lg: 10, xl: -30 },
                   "&:hover": {
                      cursor: 'pointer', opacity: 0.8
                   }
@@ -190,8 +191,8 @@ export default function Portifolio() {
                <Box sx={{
                   ...styles.imageCarouselLarge,
                   backgroundImage: `url('${imagemSelecionada?.url}')`,
-                  width: { xs: `100%`, xm: `320px`, md: `320px`, lg: 600 },
-                  height: { xs: '350px', xm: '300px', md: '300px', lg: 500 },
+                  width: { xs: `100%`, xm: `320px`, md: `320px`, lg: 600, xl: 800 },
+                  height: { xs: '350px', xm: '300px', md: '300px', lg: 500, xl: 700 },
                   margin: 'auto',
                }} />
             </Box>
