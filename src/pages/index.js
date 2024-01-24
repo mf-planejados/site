@@ -226,7 +226,7 @@ export default function Home() {
          <Box fullWidth sx={styles.container}>
             <HeaderMenu menuItems={menuItems} />
             <Box fullWidth sx={{ ...styles.containerSection }}>
-               <Box sx={{ display: 'flex', width: '100%', height: { xs: 'auto', xm: 480, md: 480, lg: 735 }, }}>
+               <Box sx={{ display: 'flex', width: '100%', height: { xs: 'auto', xm: 480, md: 480, lg: 735, xl: 968 }, }}>
                   <Box sx={{
                      position: 'absolute',
                      width: '100%',
@@ -372,7 +372,7 @@ export default function Home() {
 
             <SectionAbout data={dataImages} />
 
-            <Box sx={{ display: 'flex', width: '100%', height: { xs: 'auto', xm: 480, md: 480, lg: 735 }, marginTop: 10, marginBottom: 10 }}>
+            <Box sx={{ display: 'flex', width: '100%', height: { xs: 'auto', xm: 480, md: 480, lg: 735, xl: 968 }, marginTop: 10, marginBottom: 10 }}>
                <Box sx={{
                   position: { xs: 'relative', xm: 'relative', md: 'absolute', lg: 'absolute' },
                   backgroundImage: `url('/img/mf_inteligente.png')`,
@@ -386,7 +386,7 @@ export default function Home() {
 
             <Box sx={{
                width: '100%', display: 'flex', justifyContent: 'center',
-               height: 'auto', marginTop: 10,
+               height: { xs: 'auto', xm: 'auto', md: 'auto', lg: 'auto', xl: 'auto' }, marginTop: 10,
                marginBottom: 20,
                padding: { xs: `20px`, xm: `25px`, md: `50px`, lg: `30px 80px 0px 80px` },
                flexDirection: 'column',
