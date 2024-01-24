@@ -6,6 +6,7 @@ import { Footer } from "../../organisms/layout/footer"
 import { useMediaQuery } from "@mui/material"
 import { emailValidator, sendBudget } from "../../validators/api-requests"
 import { useAppContext } from "../../context/AppContext"
+import { Colors } from "../../organisms"
 
 export default function Contacts() {
 
@@ -86,15 +87,39 @@ export default function Contacts() {
     return (
         <>
             <Box>
-                <Box sx={{ height: widthLarge ? 800 : 'auto', padding: { xs: 0, xm: 5, md: 5, lg: 5 } }}>
-                    <Box sx={{ ...styles.imageHeader, padding: { xs: 0, xm: 5, md: 5, lg: 5 } }}>
-                        <ContentContainer center style={{ width: { xs: '100%', xm: '50%', md: '50%', lg: '50%' }, height: '100%', backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                            <Text title style={{ color: '#fff', marginTop: 30, textAlign: 'center' }}>CONTATO/ORÇAMENTO</Text>
-                            <Text style={{ color: '#fff', marginTop: 20, width: '70%', textAlign: 'center' }}>Para duvidas, sugestões e melhorias, entre em contato conosco. Faça seu orçamento sem comprimisso!</Text>
-                            <Box sx={{ width: { xs: '95%', xm: '80%', md: '80%', lg: '80%' }, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Box sx={{
+                    width: '100%', display: 'flex', justifyContent: 'center',
+                    height: { xs: 'auto', xm: 480, md: 480, lg: 600 }, marginTop: 10,
+                    margin: '30px 0px 0px 0px',
+                    padding: { xs: `60px`, xm: `25px`, md: `50px`, lg: `30px 80px 0px 80px` },
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    display: 'flex',
+                    gap: 5,
+                    backgroundColor: '#f0f0f0'
+                }}>
+                    <Box sx={{
+                        display: 'flex', gap: 1, alignItems: 'center',
+                        flexDirection: { xs: `column`, xm: `column`, md: `row`, lg: `row` },
+                    }}>
+                        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', }}>
+                            <Box sx={{ display: 'flex', height: '40px', width: 6, backgroundColor: Colors.red, marginRight: 1 }} />
+                            <Text veryLarge>Podemos ajudar a realizar</Text>
+                        </Box>
+                        <Text veryLarge bold style={{ color: Colors.red }}>Seu Sonho?</Text>
+                    </Box>
+                    <Text light style={{ maxWidth: 500, textAlign: 'center' }}>Nos conte mais sobre o seu Projeto, para entendermos melhor a sua necessidade, que entraremos
+                        em contato para atende-los da melhor forma!</Text>
 
+                    <Box sx={{ width: { xs: '100%', xm: '100%', md: '100%', lg: '100%' }, alignItems: 'center', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+                        <Box sx={{ width: { xs: '100%', xm: '100%', md: '100%', lg: '80%' }, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+
+                            <Box sx={{ display: 'flex', gap: 4 }}>
                                 <TextInput
                                     placeholder='João Silva'
+                                    variant="standard"
+                                    label="Seu Nome"
                                     value={budget?.name || ''}
                                     onChange={handleChange}
                                     name='name'
@@ -103,29 +128,35 @@ export default function Contacts() {
                                     InputProps={{
                                         style: {
                                             fontSize: 14,
-                                            backgroundColor: '#fff',
                                             margin: '0px 0px 10px 0px'
                                         }
                                     }}
                                 />
                                 <TextInput
+                                    label="Seu E-mail"
                                     placeholder='joão.silva@outlook.com'
                                     value={budget?.email || ''}
                                     onChange={handleChange}
                                     name='email'
+                                    variant="standard"
+
                                     margin='none'
                                     fullWidth
                                     InputProps={{
                                         style: {
                                             fontSize: 14,
-                                            backgroundColor: '#fff',
                                             outline: 'none',
                                             margin: '0px 0px 10px 0px'
                                         }
                                     }}
                                 />
+                            </Box>
+                            <Box sx={{ display: 'flex', gap: 4 }}>
                                 <TextInput
                                     placeholder='(11) 91234-5678'
+                                    label="Seu Telefone"
+
+                                    variant="standard"
                                     value={budget?.telephone || ''}
                                     onChange={handleChange}
                                     name='telephone'
@@ -135,14 +166,15 @@ export default function Contacts() {
                                     InputProps={{
                                         style: {
                                             fontSize: 14,
-                                            backgroundColor: '#fff',
                                             outline: 'none',
-                                            margin: '0px 0px 10px 0px'
+                                            margin: '0px 0px 10px 0px',
                                         }
                                     }}
                                 />
                                 <TextInput
                                     placeholder='Assunto'
+                                    label="Assunto"
+                                    variant="standard"
                                     value={budget?.subject || ''}
                                     onChange={handleChange}
                                     name='subject'
@@ -151,35 +183,37 @@ export default function Contacts() {
                                     InputProps={{
                                         style: {
                                             fontSize: 14,
-                                            backgroundColor: '#fff',
                                             margin: '0px 0px 10px 0px'
                                         }
                                     }}
                                 />
-                                <TextInput
-                                    placeholder='Mensagem'
-                                    value={budget?.message || ''}
-                                    onChange={handleChange}
-                                    name='message'
-                                    margin='none'
-                                    fullWidth
-                                    multiline
-                                    minRows={5}
-                                    maxRows={8}
-                                    InputProps={{
-
-                                        style: {
-                                            fontSize: 14,
-                                            backgroundColor: '#fff',
-                                        }
-                                    }}
-                                />
-
-
                             </Box>
-                            <Button text="Enviar" style={{ width: '60%' }} onClick={() => handleSendBudget()} />
-                        </ContentContainer>
+                            <TextInput
+                                placeholder='Mensagem'
+                                value={budget?.message || ''}
+                                variant="standard"
+                                label="Menssagem"
+
+                                onChange={handleChange}
+                                name='message'
+                                margin='none'
+                                fullWidth
+                                multiline
+                                minRows={5}
+                                maxRows={8}
+                                InputProps={{
+                                    style: {
+                                        fontSize: 14,
+                                        margin: '0px 0px 10px 0px'
+                                    }
+                                }}
+                            />
+
+
+                        </Box>
+                        <Button text="Enviar" style={{ width: '200px', marginTop: 8 }} onClick={() => handleSendBudget()} />
                     </Box>
+
                 </Box>
                 <Footer />
             </Box>

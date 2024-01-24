@@ -10,6 +10,7 @@ export const HeaderMenu = ({ menuItems = [] }) => {
 
    const router = useRouter()
    const home = router.pathname === '/';
+   const products = router.pathname === '/products';
 
    const [showMenuUser, setShowMenuUser] = useState(false)
    const [showMenuMobile, setShowMenuMobile] = useState(false)
@@ -46,7 +47,8 @@ export const HeaderMenu = ({ menuItems = [] }) => {
                      borderBottom: readerHasColor ? `1px solid #00000010` : 'none',
                      backgroundColor: readerHasColor ? '#fff' : 'transparent',
                      transition: 'background-color 0.3s ease-in-out',
-                  })
+                  }),
+                  ...(products && { boxShadow: 'none' })
                }}>
                   <Box sx={{
                      ...styles.icon,
