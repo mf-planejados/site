@@ -51,6 +51,8 @@ export default function Home() {
       { id: '04', imagem: '/parceiros/cachi.jpeg', },
       { id: '05', imagem: '/parceiros/samaia.jpeg', },
       { id: '06', imagem: '/parceiros/arquiteia.jpeg', },
+      { id: '07', imagem: '/parceiros/raquel_n.jpeg', },
+      { id: '08', imagem: '/parceiros/studio_d.jpeg', }
    ]
 
 
@@ -667,6 +669,7 @@ const styles = {
    imgGalery: {
       backgroundSize: { xs: `contain`, xm: 'contain', md: 'cover', lg: 'cover' },
       backgroundRepeat: 'no-repeat',
+      // backgroundPosition: 'center center',
       // overflow: 'hidden',
       marginBottom: 3,
    },
